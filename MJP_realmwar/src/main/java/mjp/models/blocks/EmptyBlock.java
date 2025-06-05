@@ -1,7 +1,6 @@
 package mjp.models.blocks;
 
 import mjp.models.Position;
-
 import java.awt.*;
 
 public class EmptyBlock extends Block{

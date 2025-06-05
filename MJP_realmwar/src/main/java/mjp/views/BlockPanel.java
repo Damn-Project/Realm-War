@@ -1,6 +1,7 @@
 package mjp.views;
 
 
+import mjp.models.Position;
 import mjp.models.blocks.Block;
 import mjp.models.blocks.EmptyBlock;
 import mjp.models.blocks.ForestBlock;
@@ -29,12 +30,12 @@ public class BlockPanel extends JPanel {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (((i + j == 9) || (i == j))  && i != 9 && i != 0 && i != 4 && i != 5 ) {
-                    Blocks[i][j] = new ForestBlock();
+                    Blocks[i][j] = new ForestBlock(new Position(i, j));
                 }
                 else if ((i == 4 || i == 5) && (j == 4 || j == 5))
-                    Blocks[i][j] = new VoidBlock();
+                    Blocks[i][j] = new VoidBlock(new Position(i, j));
                 else
-                    Blocks[i][j] = new EmptyBlock();
+                    Blocks[i][j] = new EmptyBlock(new Position(i, j));
             }
         }
 
