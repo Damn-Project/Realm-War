@@ -7,6 +7,7 @@ public class Barrack extends Structure {
 
     public Barrack(Block block, Kingdom kingdom) {
         super(block, kingdom);
+        icon = loader.imageIcons[1];
         createCost = 10;
         health = 10;
     }

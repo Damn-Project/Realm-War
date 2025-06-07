@@ -9,6 +9,7 @@ public class Swordman extends Unit {
 
     public Swordman(Block block, Kingdom kingdom) {
         super(block, kingdom);
+        icon = loader.imageIcons[7];
         foodCost = 5;
         createCost = 6;
         damage = 3;

@@ -14,7 +14,8 @@ public class ForestBlock extends Block {
         super(position);
         color = Color.GREEN;
         setBackground(color);
-       setIcon(imageLoader.imageIcons[3]);
+        icon = imageLoader.imageIcons[3];
+       setIcon(this.icon);
     }
 
 }

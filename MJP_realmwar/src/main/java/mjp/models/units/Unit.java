@@ -5,6 +5,9 @@ import mjp.models.Kingdom;
 import mjp.models.Position;
 import mjp.models.blocks.Block;
 import mjp.models.structures.Structure;
+import mjp.utils.ResourceLoader;
+
+import javax.swing.*;
 
 public abstract class Unit {
     Position position;
@@ -16,12 +19,15 @@ public abstract class Unit {
     int createCost;
     int damage;
     int health;
+    ImageIcon icon;
+    ResourceLoader loader;
 
     public Unit(Block block, Kingdom kingdom) {
         this.kingdom = kingdom;
         this.block = block;
         this.position = block.getPosition();
         this.level = 1;
+        loader = new ResourceLoader();
     }
 
     public Kingdom getKingdom() {
@@ -34,6 +40,10 @@ public abstract class Unit {
 
     public void setStructure(Structure structure) {
         this.structure = structure;
+    }
+
+    public ImageIcon getIcon() {
+        return icon;
     }
 
     public Block getBlock() {

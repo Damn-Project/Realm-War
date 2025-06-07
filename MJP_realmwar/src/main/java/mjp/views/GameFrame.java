@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
        setSize(600, 550);
        setLocationRelativeTo(null);
        setResizable(true);
+       setResizable(false);
 
        cardLayout = new CardLayout();
        mainPanel = new JPanel(cardLayout);
@@ -41,7 +42,7 @@ public class GameFrame extends JFrame {
 
        mainPanel.add(gamePanel, "GamePanel");
        mainPanel.add(menuPanel, "MenuPanel");
-       cardLayout.show(mainPanel, "GamePanel");
+       cardLayout.show(mainPanel, "MenuPanel");
 
    }
 

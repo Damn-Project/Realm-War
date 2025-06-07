@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class Block extends JButton {
-    Image icon;
+    public ImageIcon icon = null;
     Color color;
     static String imagePath;
     Position position;
@@ -58,6 +58,16 @@ public abstract class Block extends JButton {
 
     public void setKingdom(Kingdom kingdom) {
         this.kingdom = kingdom;
+    }
+
+    public void iconSetCheck() {
+        if (getUnit() == null && getStructure() == null) {
+            setIcon(this.icon);
+        } else if (getUnit() != null) {
+            setIcon(this.unit.getIcon());
+        }else {
+            setIcon(this.structure.getIcon());
+        }
     }
 
 }

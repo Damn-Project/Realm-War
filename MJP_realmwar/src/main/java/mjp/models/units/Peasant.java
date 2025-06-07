@@ -9,6 +9,7 @@ public class Peasant extends Unit {
 
     public Peasant(Block block, Kingdom kingdom) {
         super(block, kingdom);
+        icon = loader.imageIcons[5];
         foodCost = 2;
         createCost = 3;
         health = 4;

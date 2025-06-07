@@ -9,6 +9,7 @@ public class Spearman extends Unit {
 
     public Spearman(Block block, Kingdom kingdom) {
         super(block, kingdom);
+        icon = loader.imageIcons[6];
         foodCost = 4;
         createCost = 5;
         damage = 2;
