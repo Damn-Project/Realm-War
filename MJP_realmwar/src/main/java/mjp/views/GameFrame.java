@@ -37,7 +37,6 @@ public class GameFrame extends JFrame {
        menuPanel = new MenuPanel();
        infoPanel = new InfoPanel();
 
-       gamePanel.setLayout(new BorderLayout());
        gamePanel.add(blockPanel, BorderLayout.CENTER);
 
        mainPanel.add(gamePanel, "GamePanel");
