@@ -18,6 +18,7 @@ public abstract class Structure {
     int health;
     ImageIcon icon;
     ResourceLoader loader;
+    static int maxLevel = 3;
 
     public Structure(Block block, Kingdom kingdom) {
         this.kingdom = kingdom;
@@ -48,8 +49,10 @@ public abstract class Structure {
     }
 
     public void levelUpgrade() {
-        this.level++;
-        health += 2;
+        if (this.level < maxLevel) {
+            this.level++;
+            health += 2;
+        }
     }
 
     public ImageIcon getIcon() {

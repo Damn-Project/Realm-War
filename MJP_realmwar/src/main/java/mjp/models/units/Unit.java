@@ -21,6 +21,7 @@ public abstract class Unit {
     int health;
     ImageIcon icon;
     ResourceLoader loader;
+    static int maxLevel = 3;
 
     public Unit(Block block, Kingdom kingdom) {
         this.kingdom = kingdom;
@@ -76,10 +77,13 @@ public abstract class Unit {
     }
 
     public void levelUpgrade() {
-        this.level++;
-        health += 2;
-        damage++;
+       if (this.level < maxLevel) {
+           this.level++;
+           health += 2;
+           damage++;
+       }
     }
+    public int attack () { return this.damage;}
 
     public void decreaseHealth(int damage) {
         this.health -= damage;
