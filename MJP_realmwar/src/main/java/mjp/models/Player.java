@@ -7,10 +7,10 @@ public class Player {
     Kingdom kingdom;
     Color color;
 
-    public Player(String name, Kingdom kingdom , Color color) {
+    public Player(String name, Kingdom kingdom ) {
         this.name = name;
         this.kingdom = kingdom;
-        this.color = color;
+        this.color = kingdom.myColor;
     }
 
     public String getName() {

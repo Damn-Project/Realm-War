@@ -18,8 +18,7 @@ public class Kingdom {
     ArrayList<Unit> units;
     static int kingdomCounter = 0;
 
-    public Kingdom(Player player) {
-        this.player = player;
+    public Kingdom() {
         kingdomCounter++;
         myColor = colors[kingdomCounter];
         gold = 20;
@@ -27,5 +26,9 @@ public class Kingdom {
         blocks = new ArrayList<>();
         structures = new ArrayList<>();
         units = new ArrayList<>();
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

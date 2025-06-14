@@ -13,10 +13,12 @@ public class MenuPanel extends JPanel {
     private JButton loadGameButton;
     private JButton exitButton;
     JPanel centerPAnel;
-    private int playerCount;
+    public int playerCount;
     private ArrayList<String> playerNames;
+    public GameFrame gameFrame;
 
-    public MenuPanel() {
+    public MenuPanel(GameFrame gameFrame) {
+        this.gameFrame = gameFrame;
         initialize();
     }
 
@@ -189,6 +191,7 @@ public class MenuPanel extends JPanel {
                 String name = field.getText().trim();
                 playerNames.add(name.isEmpty() ? "Player " + (playerNames.size() + 1) : name);
             }
+            gameFrame.showGamePanel();
 //                startGame();
         });
 

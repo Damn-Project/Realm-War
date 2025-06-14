@@ -34,15 +34,22 @@ public class GameFrame extends JFrame {
    public void setStates() {
        gamePanel = new GamePanel();
        blockPanel = new BlockPanel();
-       menuPanel = new MenuPanel();
+       menuPanel = new MenuPanel(this);
        infoPanel = new InfoPanel();
 
        gamePanel.add(blockPanel, BorderLayout.CENTER);
+       gamePanel.add(infoPanel, BorderLayout.EAST);
 
        mainPanel.add(gamePanel, "GamePanel");
        mainPanel.add(menuPanel, "MenuPanel");
        cardLayout.show(mainPanel, "MenuPanel");
 
+   }
+
+   public void showGamePanel() {
+        cardLayout.show(mainPanel, "GamePanel");
+       this.revalidate();
+       this.repaint();
    }
 
 
