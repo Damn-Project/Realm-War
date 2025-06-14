@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameFrame extends JFrame {
-    JPanel mainPanel;
-    GamePanel gamePanel;
-    BlockPanel blockPanel;
-    MenuPanel menuPanel;
-    InfoPanel infoPanel;
-    CardLayout cardLayout;
+    public JPanel mainPanel;
+    public GamePanel gamePanel;
+    public BlockPanel blockPanel;
+    public MenuPanel menuPanel;
+    public InfoPanel infoPanel;
+    public CardLayout cardLayout;
 
 
     public GameFrame() {

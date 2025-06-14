@@ -1,5 +1,7 @@
 package mjp.views;
 
+import mjp.controllers.GameController;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -16,6 +18,7 @@ public class MenuPanel extends JPanel {
     public int playerCount;
     private ArrayList<String> playerNames;
     public GameFrame gameFrame;
+    GameController gameController;
 
     public MenuPanel(GameFrame gameFrame) {
         this.gameFrame = gameFrame;
@@ -191,6 +194,7 @@ public class MenuPanel extends JPanel {
                 String name = field.getText().trim();
                 playerNames.add(name.isEmpty() ? "Player " + (playerNames.size() + 1) : name);
             }
+            gameController.makePlayers(playerCount, playerNames);
             gameFrame.showGamePanel();
 //                startGame();
         });
@@ -205,5 +209,9 @@ public class MenuPanel extends JPanel {
         this.add(namePanel, BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 }
