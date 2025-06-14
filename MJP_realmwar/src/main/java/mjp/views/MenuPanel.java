@@ -194,7 +194,7 @@ public class MenuPanel extends JPanel {
                 String name = field.getText().trim();
                 playerNames.add(name.isEmpty() ? "Player " + (playerNames.size() + 1) : name);
             }
-            gameController.makePlayers(playerCount, playerNames);
+//            gameController.makePlayers(playerCount, playerNames);
             gameFrame.showGamePanel();
 //                startGame();
         });
