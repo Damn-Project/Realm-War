@@ -9,6 +9,7 @@ public class GameFrame extends JFrame {
     BlockPanel blockPanel;
     MenuPanel menuPanel;
     InfoPanel infoPanel;
+    ActionPanel actionPanel;
     CardLayout cardLayout;
 
 
@@ -33,11 +34,13 @@ public class GameFrame extends JFrame {
 
    public void setStates() {
        gamePanel = new GamePanel();
+       actionPanel = new ActionPanel();
        blockPanel = new BlockPanel();
        menuPanel = new MenuPanel(this);
        infoPanel = new InfoPanel();
 
        gamePanel.add(blockPanel, BorderLayout.CENTER);
+       gamePanel.add(actionPanel, BorderLayout.SOUTH);
        gamePanel.add(infoPanel, BorderLayout.EAST);
 
        mainPanel.add(gamePanel, "GamePanel");

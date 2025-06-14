@@ -8,7 +8,7 @@ public class InfoPanel extends JPanel {
 
     public InfoPanel() {
         setLayout(new GridLayout(2, 1));
-        setPreferredSize(new Dimension(150, 550));
+        setPreferredSize(new Dimension(200, 550));
         setBackground(new Color(200, 200, 200));
     }
 }
