@@ -7,8 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static java.awt.Color.BLACK;
-import static java.awt.Color.WHITE;
+import static java.awt.Color.*;
 
 public class MenuPanel extends JPanel {
     private JButton newGameButton;
@@ -138,6 +137,8 @@ public class MenuPanel extends JPanel {
         countButtons[1].setSelected(true); // Default to 1 player
 
         JButton nextButton = new JButton("Next");
+        nextButton.setBackground(GRAY);
+        nextButton.setForeground(BLACK);
         gbc.gridy = 5;
         gbc.gridwidth = 5;
         countPanel.add(nextButton, gbc);
@@ -153,6 +154,8 @@ public class MenuPanel extends JPanel {
         });
 
         JButton backButton = new JButton("back");
+        backButton.setBackground(GRAY);
+        backButton.setForeground(BLACK);
         gbc.gridy = 6;
         gbc.gridwidth = 5;
         countPanel.add(backButton, gbc);
@@ -188,18 +191,22 @@ public class MenuPanel extends JPanel {
         }
 
         JButton startButton = new JButton("Start Game");
+        startButton.setBackground(GRAY);
+        startButton.setForeground(BLACK);
         startButton.addActionListener(e -> {
             playerNames = new ArrayList<>();
             for (JTextField field : nameFields) {
                 String name = field.getText().trim();
                 playerNames.add(name.isEmpty() ? "Player " + (playerNames.size() + 1) : name);
             }
-//            gameController.makePlayers(playerCount, playerNames);
+            gameController.makePlayers(playerCount, playerNames);
             gameFrame.showGamePanel();
-//                startGame();
+            gameController.logPlayers();
         });
 
         JButton backButton = new JButton("back");
+        backButton.setBackground(GRAY);
+        backButton.setForeground(BLACK);
         backButton.addActionListener(e -> {
             createAndShowStartPanel();
         });

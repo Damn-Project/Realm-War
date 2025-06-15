@@ -54,6 +54,8 @@ public abstract class Block extends JButton {
     public void setStructure(Structure structure) {
         hasStructure = true;
         this.structure = structure;
+        setIcon(structure.getIcon());
+        setBackground(structure.getKingdom().getMyColor());
     }
 
     public void setKingdom(Kingdom kingdom) {
