@@ -14,6 +14,10 @@ public class ResourceLoader {
         ImageIcon img;
         Image scaledImg;
         try {
+            img = new ImageIcon(getClass().getResource("/menuPanel.jpg"));
+            scaledImg = img.getImage().getScaledInstance(650, 320, Image.SCALE_SMOOTH);
+            imageIcons[0] = new ImageIcon(scaledImg);
+
             img = new ImageIcon(getClass().getResource("/Barrack.jpg"));
             scaledImg = img.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             imageIcons[1] = new ImageIcon(scaledImg);

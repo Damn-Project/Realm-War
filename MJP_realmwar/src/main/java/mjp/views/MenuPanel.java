@@ -1,6 +1,7 @@
 package mjp.views;
 
 import mjp.controllers.GameController;
+import mjp.utils.ResourceLoader;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,8 +19,10 @@ public class MenuPanel extends JPanel {
     private ArrayList<String> playerNames;
     public GameFrame gameFrame;
     GameController gameController;
+    ResourceLoader loader;
 
     public MenuPanel(GameFrame gameFrame) {
+        loader = new ResourceLoader();
         this.gameFrame = gameFrame;
         initialize();
     }
@@ -79,15 +82,7 @@ public class MenuPanel extends JPanel {
 
         formPanel.add(centerPAnel);
 
-        ImageIcon icon3 = null;
-        try {
-            ImageIcon icon = new ImageIcon("/home/sopoyan/Desktop/Realm-War/MJP_realmwar/src/resources/menuPanel.jpg");
-            Image icon2;
-            icon2 = icon.getImage().getScaledInstance(650, 320, Image.SCALE_SMOOTH);
-            icon3 = new ImageIcon(icon2);
-        } catch (Exception e) {
-            System.out.println("way");
-        }
+        ImageIcon icon3 = loader.imageIcons[0];
         JLabel imageLabel = new JLabel(icon3);
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new FlowLayout());
@@ -95,7 +90,6 @@ public class MenuPanel extends JPanel {
 
         add(imagePanel);
         add(formPanel);
-
 
         exitButton.addActionListener(e -> {
             System.exit(0);
