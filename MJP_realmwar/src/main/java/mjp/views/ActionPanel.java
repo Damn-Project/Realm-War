@@ -36,5 +36,47 @@ public class ActionPanel extends JPanel {
         add(moveButton);
         add(upgradeButton);
         add(createButton);
+
+
+        createButton.addActionListener(e -> {
+            // ساخت یک پنجره‌ی جدید
+            JFrame createFrame = new JFrame("Create Building");
+            createFrame.setSize(200, 300);
+            createFrame.setLocationRelativeTo(null); // وسط صفحه باز بشه
+            createFrame.setLayout(new BorderLayout());
+
+            JLabel label = new JLabel("Choose the type");
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            JPanel labelPanel = new JPanel(new BorderLayout());
+            labelPanel.add(label, BorderLayout.CENTER);
+
+
+            JPanel radioPanel = new JPanel(new GridLayout(3, 1));
+            JRadioButton Barrackbutton = new JRadioButton("Barrack");
+            JRadioButton Farmbutton = new JRadioButton("Farm");
+            JRadioButton Towerbutton = new JRadioButton("Tower");
+
+
+            ButtonGroup group = new ButtonGroup();
+            group.add(Barrackbutton);
+            group.add(Farmbutton);
+            group.add(Towerbutton);
+
+            radioPanel.add(Barrackbutton);
+            radioPanel.add(Farmbutton);
+            radioPanel.add(Towerbutton);
+
+
+            JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
+
+
+            createFrame.add(labelPanel, BorderLayout.NORTH);
+            createFrame.add(radioPanel, BorderLayout.CENTER);
+            createFrame.add(buttonPanel, BorderLayout.SOUTH);
+
+
+            createFrame.setVisible(true);
+        });
+
     }
 }
