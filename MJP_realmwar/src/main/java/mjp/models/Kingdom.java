@@ -41,4 +41,8 @@ public class Kingdom {
     public  Color getMyColor() {
         return myColor;
     }
+
+    public void setStructure(Structure structure) {
+        this.structures.add(structure);
+    }
 }
