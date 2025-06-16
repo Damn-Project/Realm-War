@@ -10,6 +10,15 @@ public class ActionPanel extends JPanel {
     private JButton upgradeButton;
     private JButton createButton;
 
+
+    Color primaryColor = new Color(30, 30, 30); // مشکی مات
+    Color accentColor = new Color(200, 0, 0);   // قرمز
+    Color borderColor = new Color(212, 175, 55); // طلایی
+
+
+
+
+
     public ActionPanel() {
         // تنظیم Layout به FlowLayout
         //setLayout(new FlowLayout());
@@ -67,7 +76,11 @@ public class ActionPanel extends JPanel {
             radioPanel.add(Towerbutton);
 
 
-            JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
+
+            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            JButton attackButton = new JButton("ok");
+            buttonPanel.add(attackButton);
+
 
 
             createFrame.add(labelPanel, BorderLayout.NORTH);
