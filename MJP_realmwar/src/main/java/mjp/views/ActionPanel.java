@@ -8,6 +8,7 @@ public class ActionPanel extends JPanel {
     private JButton attackButton;
     private JButton moveButton;
     private JButton upgradeButton;
+    private JButton createButton;
 
     public ActionPanel() {
         // تنظیم Layout به FlowLayout
@@ -26,10 +27,14 @@ public class ActionPanel extends JPanel {
         upgradeButton = new JButton("Upgrade");
         upgradeButton.setBackground(Color.BLACK);
         upgradeButton.setForeground(Color.BLUE);
+        createButton = new JButton("Creat");
+        createButton.setBackground(Color.BLACK);
+        createButton.setForeground(Color.BLUE);
 
         // افزودن دکمه‌ها به پنل
         add(attackButton);
         add(moveButton);
         add(upgradeButton);
+        add(createButton);
     }
 }
