@@ -81,7 +81,7 @@ public class MenuPanel extends JPanel {
 
         ImageIcon icon3 = null;
         try {
-            ImageIcon icon = new ImageIcon("/home/sopoyan/Documents/pooyan folder/wall paper/metro_exodus_wallpaper_by_da_gamecovers_dgeg2dp.jpg");
+            ImageIcon icon = new ImageIcon("/home/sopoyan/Desktop/Realm-War/MJP_realmwar/src/resources/menuPanel.jpg");
             Image icon2;
             icon2 = icon.getImage().getScaledInstance(650, 320, Image.SCALE_SMOOTH);
             icon3 = new ImageIcon(icon2);
