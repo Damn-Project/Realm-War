@@ -18,8 +18,14 @@ public class ActionPanel extends JPanel {
         setBackground(new Color(200, 200, 200));
 
         attackButton = new JButton("Attack");
+        attackButton.setBackground(Color.BLACK);
+        attackButton.setForeground(Color.BLUE);
         moveButton = new JButton("Move");
+        moveButton.setBackground(Color.BLACK);
+        moveButton.setForeground(Color.BLUE);
         upgradeButton = new JButton("Upgrade");
+        upgradeButton.setBackground(Color.BLACK);
+        upgradeButton.setForeground(Color.BLUE);
 
         // افزودن دکمه‌ها به پنل
         add(attackButton);

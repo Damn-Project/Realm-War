@@ -36,6 +36,10 @@ public abstract class Structure {
         return createCost;
     }
 
+    public Kingdom getKingdom() {
+        return kingdom;
+    }
+
     public int getHealth() {
         return health;
     }

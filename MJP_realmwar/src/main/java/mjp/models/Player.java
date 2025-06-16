@@ -3,8 +3,8 @@ package mjp.models;
 import java.awt.*;
 
 public class Player {
-    String name;
-    Kingdom kingdom;
+    private final String name;
+    private Kingdom kingdom;
     Color color;
 
     public Player(String name, Kingdom kingdom ) {
@@ -15,10 +15,6 @@ public class Player {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Kingdom getKingdom() {

@@ -17,8 +17,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class BlockPanel extends JPanel {
-    Block[][] Blocks;
+    private Block[][] Blocks;
 
+
+    public Block[][] getBlocks() {
+        return Blocks;
+    }
 
     public BlockPanel() {
         setLayout(new GridLayout(10, 10));
@@ -44,6 +48,5 @@ public class BlockPanel extends JPanel {
                 add(Blocks[i][j]);
             }
         }
-
     }
 }

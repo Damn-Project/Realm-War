@@ -10,7 +10,10 @@ public class GameFrame extends JFrame {
     public MenuPanel menuPanel;
     public InfoPanel infoPanel;
     public CardLayout cardLayout;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97b8f9b465b2de189ac83cdbc68a2366ddec4c52
     ActionPanel actionPanel;
 
 
