@@ -5,7 +5,6 @@ import mjp.models.Player;
 import mjp.models.blocks.Block;
 import mjp.models.structures.Farm;
 import mjp.models.structures.TownHall;
-import mjp.views.BlockPanel;
 import mjp.views.GameFrame;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class GameController {
     public GameController() {
         frame = new GameFrame();
         frame.menuPanel.setGameController(this);
-
+        frame.blockPanel.setGameController(this);
 
 
         frame.setVisible(true);
@@ -36,7 +35,7 @@ public class GameController {
         Block[][] blocks = frame.blockPanel.getBlocks();
         for (int i = 0; i < players.size(); i++) {
             switch (i) {
-                case 0 : {
+                case 0: {
                     TownHall townHall1 = new TownHall(blocks[0][4], players.get(i).getKingdom());
                     TownHall townHall2 = new TownHall(blocks[0][5], players.get(i).getKingdom());
                     Farm farm1 = new Farm(blocks[0][3], players.get(i).getKingdom());
@@ -50,7 +49,7 @@ public class GameController {
                     blocks[0][5].setStructure(townHall2);
                     break;
                 }
-                case 1 : {
+                case 1: {
                     TownHall townHall1 = new TownHall(blocks[9][4], players.get(i).getKingdom());
                     TownHall townHall2 = new TownHall(blocks[9][5], players.get(i).getKingdom());
                     Farm farm1 = new Farm(blocks[9][3], players.get(i).getKingdom());
@@ -64,7 +63,7 @@ public class GameController {
                     blocks[9][5].setStructure(townHall2);
                     break;
                 }
-                case 2 : {
+                case 2: {
                     TownHall townHall1 = new TownHall(blocks[4][0], players.get(i).getKingdom());
                     TownHall townHall2 = new TownHall(blocks[5][0], players.get(i).getKingdom());
                     Farm farm1 = new Farm(blocks[3][0], players.get(i).getKingdom());
@@ -78,7 +77,7 @@ public class GameController {
                     blocks[5][0].setStructure(townHall2);
                     break;
                 }
-                case 3 : {
+                case 3: {
                     TownHall townHall1 = new TownHall(blocks[4][9], players.get(i).getKingdom());
                     TownHall townHall2 = new TownHall(blocks[5][9], players.get(i).getKingdom());
                     Farm farm1 = new Farm(blocks[3][9], players.get(i).getKingdom());
@@ -93,5 +92,9 @@ public class GameController {
                 }
             }
         }
+    }
+
+    public boolean isEnd() {
+        return players.size() == 1;
     }
 }

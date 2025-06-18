@@ -1,6 +1,7 @@
 package mjp.views;
 
 
+import mjp.controllers.GameController;
 import mjp.models.Position;
 import mjp.models.blocks.Block;
 import mjp.models.blocks.EmptyBlock;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 public class BlockPanel extends JPanel {
     private Block[][] Blocks;
+    GameController gameController;
 
 
     public Block[][] getBlocks() {
@@ -48,5 +50,9 @@ public class BlockPanel extends JPanel {
                 add(Blocks[i][j]);
             }
         }
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 }
