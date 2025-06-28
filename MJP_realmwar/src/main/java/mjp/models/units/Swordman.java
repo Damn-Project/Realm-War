@@ -14,5 +14,6 @@ public class Swordman extends Unit {
         createCost = 6;
         damage = 3;
         health = 6;
+        kingdom.decreaseGold(getCreateCost());
     }
 }

@@ -15,8 +15,9 @@ public abstract class Unit {
     Structure structure;
     Block block;
     int level;
+    int levelUpGradeCost;
     int foodCost;
-    int createCost;
+    public static int createCost;
     int damage;
     int health;
     ImageIcon icon;
@@ -29,6 +30,8 @@ public abstract class Unit {
         this.position = block.getPosition();
         this.level = 1;
         loader = new ResourceLoader();
+        levelUpGradeCost = 1;
+
     }
 
     public Kingdom getKingdom() {
@@ -77,15 +80,22 @@ public abstract class Unit {
     }
 
     public void levelUpgrade() {
-       if (this.level < maxLevel) {
-           this.level++;
-           health += 2;
-           damage++;
-       }
+        if (this.level < maxLevel) {
+            this.level++;
+            health += 2;
+            damage++;
+            kingdom.decreaseGold(levelUpGradeCost);
+        }
     }
-    public int attack () { return this.damage;}
+
+    public int getLevelUpGradeCost() {
+        return levelUpGradeCost;
+    }
+
+    public int attack() {
+        return getDamage();
+    }
 
     public void decreaseHealth(int damage) {
         this.health -= damage;
-    }
-}
+    }}

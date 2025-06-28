@@ -14,8 +14,18 @@ public abstract class Structure {
     Block block;
     Unit unit;
     int level;
-    int createCost;
+    int levelUpGradeCost;
+    public static int createCost;
     int health;
+
+    public int getLevelUpGradeCost() {
+        return levelUpGradeCost;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
     ImageIcon icon;
     ResourceLoader loader;
     static int maxLevel = 3;
@@ -26,6 +36,7 @@ public abstract class Structure {
         this.position = block.getPosition();
         this.level = 1;
         loader = new ResourceLoader();
+        levelUpGradeCost = 2;
     }
 
     public Block getBlock() {
@@ -56,6 +67,7 @@ public abstract class Structure {
         if (this.level < maxLevel) {
             this.level++;
             health += 2;
+            kingdom.decreaseGold(levelUpGradeCost);
         }
     }
 

@@ -193,9 +193,9 @@ public class MenuPanel extends JPanel {
                 String name = field.getText().trim();
                 playerNames.add(name.isEmpty() ? "Player " + (playerNames.size() + 1) : name);
             }
-            gameController.makePlayers(playerCount, playerNames);
+            gameController.getPlayerController().makePlayers(playerCount, playerNames);
             gameFrame.showGamePanel();
-            gameController.logPlayers();
+            gameController.getPlayerController().logPlayers();
         });
 
         JButton backButton = new JButton("back");

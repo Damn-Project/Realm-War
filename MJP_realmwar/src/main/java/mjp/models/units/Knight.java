@@ -14,6 +14,7 @@ public class Knight extends Unit {
         createCost = 7;
         damage = 4;
         health = 7;
+        kingdom.decreaseGold(getCreateCost());
     }
 
 }

@@ -10,6 +10,7 @@ public class Barrack extends Structure {
         icon = loader.imageIcons[1];
         createCost = 10;
         health = 10;
+        kingdom.decreaseGold(getCreateCost());
     }
 
 }

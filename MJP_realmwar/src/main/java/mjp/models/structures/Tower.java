@@ -13,6 +13,7 @@ public class Tower extends Structure {
         createCost = 9;
         health = 10;
         damage = 5;
+        kingdom.decreaseGold(getCreateCost());
     }
 
     @Override
