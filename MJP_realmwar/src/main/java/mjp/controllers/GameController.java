@@ -26,16 +26,17 @@ public class GameController {
     private InfoPanel infoPanel;
     private ActionPanel actionPanel;
     private BlockPanel blockPanel;
-    private final ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<Player> players = new ArrayList<>();
     private Block selected1;
     private Block selected2;
     Queue<Player> turn;
     Player onTurn;
     private boolean moveButtonSelected;
-    private final ArrayList<Block> attackingBlocks;
-    Timer attackTimer;
-    Timer endTurnTimer;
+    private ArrayList<Block> attackingBlocks;
+    public Timer attackTimer;
+    public Timer endTurnTimer;
     Boolean barrackWork = false;
+    boolean gameIsRunning = false;
 
     public void setMoveButtonSelected(boolean moveButtonSelected) {
         this.moveButtonSelected = moveButtonSelected;
@@ -100,10 +101,10 @@ public class GameController {
         unitcontroller = new Unitcontroller(this);
         structureController = new StructureController(this);
         attackingBlocks = new ArrayList<>();
-        attackTimer = new Timer(2000, e -> {
+        attackTimer = new Timer(4000, e -> {
             attackOnTimer();
         });
-        endTurnTimer = new Timer(20000, e -> {
+        endTurnTimer = new Timer(30000, e -> {
             endTurn();
         });
         attackTimer.setRepeats(true);
@@ -133,6 +134,8 @@ public class GameController {
         actionPanel.setGameController(this);
         actionPanel.setInfoPanel(infoPanel);
         infoPanel.setActionPanel(actionPanel);
+        infoPanel.setGameController(this);
+        infoPanel.setMenuPanel(menuPanel);
         actionPanel.setGameFrame(frame);
     }
 
@@ -143,6 +146,8 @@ public class GameController {
     public void isEnd() {
         if (players.size() == 1) {
             frame.showMessageYouWin(players.get(0));
+            endTurnTimer.stop();
+            attackTimer.stop();
         }
     }
 
@@ -277,24 +282,24 @@ public class GameController {
     public void makeUnitInBarrack() {
         if (!barrackWork) {
             barrackWork = true;
-        }else {
+        } else {
             barrackWork = false;
             for (Player p : players) {
                 for (Structure s : p.getKingdom().getStructures()) {
                     if (s.getClass().getSimpleName().equalsIgnoreCase("Barrack")) {
                         if (s.getBlock().getFreeBlockInNeighbors() != null) {
                             switch (s.getLevel()) {
-                                case 1:{
+                                case 1: {
                                     Spearman spearman = new Spearman(s.getBlock().getFreeBlockInNeighbors(), p.getKingdom());
                                     unitcontroller.makeUnit(spearman, p, s.getBlock().getFreeBlockInNeighbors());
                                     break;
                                 }
-                                case 2:{
+                                case 2: {
                                     Swordman swordman = new Swordman(s.getBlock().getFreeBlockInNeighbors(), p.getKingdom());
                                     unitcontroller.makeUnit(swordman, p, s.getBlock().getFreeBlockInNeighbors());
                                     break;
                                 }
-                                case 3:{
+                                case 3: {
                                     Knight knight = new Knight(s.getBlock().getFreeBlockInNeighbors(), p.getKingdom());
                                     unitcontroller.makeUnit(knight, p, s.getBlock().getFreeBlockInNeighbors());
                                     break;
@@ -311,5 +316,26 @@ public class GameController {
         for (Player p : players) {
             p.getKingdom().addIncome();
         }
+    }
+
+    public boolean getGameIsRunning() {
+        return gameIsRunning;
+    }
+
+    public void setPlayersUndo() {
+        this.players = new ArrayList<>();
+    }
+
+    public void reset() {
+        getFrame().blockPanel.reset();
+        if (getFrame().blockPanel.getBlocks()[0][0].getNeighbors().isEmpty()) {
+            getFrame().blockPanel.setBlocksNeighbors();
+        }
+        getFrame().infoPanel.reset();
+        attackingBlocks = new ArrayList<>();
+        attackTimer.start();
+        endTurnTimer.start();
+        if (!gameIsRunning)
+            gameIsRunning = true;
     }
 }

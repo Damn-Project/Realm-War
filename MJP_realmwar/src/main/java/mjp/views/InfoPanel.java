@@ -1,12 +1,16 @@
 package mjp.views;
 
+import mjp.controllers.GameController;
 import mjp.models.Player;
 import mjp.models.blocks.Block;
+import mjp.models.structures.Tower;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class InfoPanel extends JPanel {
+    static GameController gameController;
+    static MenuPanel menuPanel;
     private BlockPanel blockPanel;
     private ActionPanel actionPanel;
     JPanel upPanel;
@@ -14,6 +18,14 @@ public class InfoPanel extends JPanel {
     JPanel downPanel;
     GridBagConstraints downGBC;
     Color color = Color.BLACK;
+
+    public void setGameController(GameController gameController) {
+        InfoPanel.gameController = gameController;
+    }
+
+    public void setMenuPanel(MenuPanel menuPanel) {
+        InfoPanel.menuPanel = menuPanel;
+    }
 
     public ActionPanel getActionPanel() {
         return actionPanel;
@@ -62,6 +74,13 @@ public class InfoPanel extends JPanel {
         downPanel.repaint();
     }
 
+    public void reset() {
+        downPanel.removeAll();
+
+        downPanel.repaint();
+        downPanel.revalidate();
+    }
+
     public void setBlockInfo(Block button) {
         downPanel.removeAll();
 
@@ -71,9 +90,9 @@ public class InfoPanel extends JPanel {
         if (button.hasUnit() || button.hasStructure()) {
             if (button.hasUnit()) {
                 buttonInfo = button.getUnit().getKingdom().getMyColor();
-            }else
+            } else
                 buttonInfo = button.getStructure().getKingdom().getMyColor();
-        }else buttonInfo = color;
+        } else buttonInfo = color;
 
         button.setBorder(BorderFactory.createLineBorder(buttonInfo));
         downGBC.gridy = 0;
@@ -90,6 +109,14 @@ public class InfoPanel extends JPanel {
             structureName.setForeground(buttonInfo);
             structureName.setText(button.getStructure().getClass().getSimpleName() + "  " + button.getStructure().getLevel());
             downPanel.add(structureName, downGBC);
+            if (button.getStructure().getClass().getSimpleName().equalsIgnoreCase("tower")) {
+                downGBC.gridx = 2;
+                JLabel damageLabel = new JLabel();
+                damageLabel.setForeground(buttonInfo);
+                Tower t = (Tower) button.getStructure();
+                damageLabel.setText(String.valueOf(t.getDamage()));
+                downPanel.add(damageLabel, downGBC);
+            }
         }
 
         if (button.getUnit() != null) {
@@ -99,6 +126,11 @@ public class InfoPanel extends JPanel {
             unitName.setForeground(buttonInfo);
             unitName.setText(button.getUnit().getClass().getSimpleName() + "  " + button.getUnit().getLevel());
             downPanel.add(unitName, downGBC);
+            downGBC.gridx = 2;
+            JLabel damageLabel = new JLabel();
+            damageLabel.setForeground(buttonInfo);
+            damageLabel.setText(String.valueOf(button.getUnit().getDamage()));
+            downPanel.add(damageLabel, downGBC);
         }
 
 
@@ -109,28 +141,34 @@ public class InfoPanel extends JPanel {
     public void setPlayerInfo(Player player) {
         upPanel.removeAll();
 
+        upGBC.gridx = 1;
         upGBC.gridy = 0;
+        JPanel buttonPanel = getButtonPanel();
+        upPanel.add(buttonPanel, upGBC);
+
+
+        upGBC.gridy = 1;
         upGBC.gridx = 1;
         JLabel playerName = new JLabel();
         playerName.setForeground(color);
         playerName.setText(player.getName());
         upPanel.add(playerName, upGBC);
 
-        upGBC.gridy = 1;
+        upGBC.gridy = 2;
         upGBC.gridx = 1;
         JLabel playerColor = new JLabel();
         playerColor.setForeground(player.getKingdom().getMyColor());
         playerColor.setText("color");
         upPanel.add(playerColor, upGBC);
 
-        upGBC.gridy = 2;
+        upGBC.gridy = 3;
         upGBC.gridx = 1;
         JLabel playerFood = new JLabel();
         playerFood.setForeground(color);
         playerFood.setText("food " + player.getKingdom().getFood());
         upPanel.add(playerFood, upGBC);
 
-        upGBC.gridy = 3;
+        upGBC.gridy = 4;
         upGBC.gridx = 1;
         JLabel playerCoin = new JLabel();
         playerCoin.setForeground(color);
@@ -139,5 +177,48 @@ public class InfoPanel extends JPanel {
 
         upPanel.revalidate();
         upPanel.repaint();
+    }
+
+    private static JPanel getButtonPanel() {
+        JButton exitButton = new JButton("Exit");
+        exitButton.setForeground(Color.gray);
+        exitButton.setBackground(Color.BLACK);
+        exitButton.addActionListener(e -> {
+            gameController.endTurnTimer.stop();
+            gameController.attackTimer.stop();
+            menuPanel.initialize();
+            gameController.getFrame().cardLayout.show(gameController.getFrame().mainPanel, "MenuPanel");
+        });
+        JButton pauseButton = new JButton("Pause");
+        pauseButton.setForeground(Color.GRAY);
+        pauseButton.setBackground(Color.BLACK);
+        pauseButton.addActionListener(e -> {
+            gameController.endTurnTimer.stop();
+            gameController.attackTimer.stop();
+            JFrame createFrame = new JFrame("Create structure or unit");
+            createFrame.setResizable(false);
+            createFrame.setSize(150, 150);
+            createFrame.setLocationRelativeTo(null);
+            createFrame.setLayout(new FlowLayout());
+            createFrame.setBackground(Color.BLACK);
+
+            JButton resumeButton = new JButton("resume");
+            resumeButton.setForeground(Color.black);
+            resumeButton.setBackground(Color.GRAY);
+            createFrame.add(resumeButton);
+            resumeButton.addActionListener(E -> {
+                gameController.attackTimer.start();
+                gameController.endTurnTimer.start();
+                createFrame.setVisible(false);
+            });
+
+            createFrame.setVisible(true);
+        });
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 2));
+        buttonPanel.setBackground(Color.black);
+        buttonPanel.add(exitButton);
+        buttonPanel.add(pauseButton);
+        return buttonPanel;
     }
 }

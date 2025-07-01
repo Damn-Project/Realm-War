@@ -311,7 +311,6 @@ public class ActionPanel extends JPanel {
                 JRadioButton structure = new JRadioButton("structure");
                 JRadioButton unit = new JRadioButton("unit");
 
-
                 ButtonGroup group = new ButtonGroup();
                 group.add(structure);
                 group.add(unit);
@@ -361,6 +360,10 @@ public class ActionPanel extends JPanel {
     }
 
     public void moveUnits1(Block block) {
+        if (block == null) {
+            gameController.getFrame().showMassageSelectBlock();
+            return;
+        }
         if (!block.hasUnit()) {
             gameFrame.showMessageHasNoUnit();
         } else if (!block.getUnit().getKingdom().getPlayer().equals(gameController.getOnTurn())) {

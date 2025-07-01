@@ -13,6 +13,9 @@ public class Tower extends Structure {
         createCost = 9;
         health = 10;
         damage = 5;
+        if (block.getClass().getSimpleName().equalsIgnoreCase("ForestBlock")) {
+            damage += 2;
+        }
         kingdom.decreaseGold(getCreateCost());
     }
 
@@ -24,5 +27,9 @@ public class Tower extends Structure {
 
     public int attack() {
         return damage;
+    }
+
+    public int getDamage() {
+        return this.damage;
     }
 }

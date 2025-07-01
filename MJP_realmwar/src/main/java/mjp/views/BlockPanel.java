@@ -138,4 +138,13 @@ public class BlockPanel extends JPanel {
     public boolean isInRangePosition(int q) {
         return (q >= 0 && q <= 9);
     }
+
+    public void reset() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Blocks[i][j].removeUnit();
+                Blocks[i][j].structureDied();
+            }
+        }
+    }
 }

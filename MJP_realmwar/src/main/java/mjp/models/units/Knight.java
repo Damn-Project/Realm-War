@@ -12,7 +12,7 @@ public class Knight extends Unit {
         icon = loader.imageIcons[4];
         foodCost = 6;
         createCost = 7;
-        damage = 4;
+        damage = 5;
         health = 7;
         kingdom.decreaseGold(getCreateCost());
     }

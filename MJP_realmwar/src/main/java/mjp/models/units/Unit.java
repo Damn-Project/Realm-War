@@ -23,10 +23,14 @@ public abstract class Unit {
     ImageIcon icon;
     ResourceLoader loader;
     static int maxLevel = 3;
+    boolean inForest;
 
     public Unit(Block block, Kingdom kingdom) {
         this.kingdom = kingdom;
         this.block = block;
+        if (block.getClass().getSimpleName().equalsIgnoreCase("ForestBlock")) {
+            inForest = true;
+        }
         this.position = block.getPosition();
         this.level = 1;
         loader = new ResourceLoader();
@@ -57,6 +61,21 @@ public abstract class Unit {
     public void setBlock(Block block) {
         this.block = block;
         this.position = block.getPosition();
+        if (block.getClass().getSimpleName().equalsIgnoreCase("ForestBlock") && !inForest) {
+            inForest = true;
+            upgradeDamage();
+        } else if (!block.getClass().getSimpleName().equalsIgnoreCase("ForestBlock") && inForest) {
+            inForest = false;
+            decreaseDamage();
+        }
+    }
+
+    public void upgradeDamage() {
+        this.damage++;
+    }
+
+    public void decreaseDamage() {
+        this.damage--;
     }
 
     public int getFoodCost() {
@@ -98,4 +117,5 @@ public abstract class Unit {
 
     public void decreaseHealth(int damage) {
         this.health -= damage;
-    }}
+    }
+}

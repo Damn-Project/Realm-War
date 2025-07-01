@@ -64,6 +64,7 @@ public class StructureController {
         }
         if (diedP != null) {
             gameController.getPlayers().remove(diedP);
+            gameController.turn.remove(diedP);
             gameController.isEnd();
         }
     }

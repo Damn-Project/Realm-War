@@ -19,11 +19,15 @@ public class Kingdom {
     private ArrayList<Unit> units;
     static int kingdomCounter = 0;
 
+    public static void setKingdomCounter(int kingdomCounter) {
+        Kingdom.kingdomCounter = kingdomCounter;
+    }
+
     public Kingdom() {
         myColor = colors[kingdomCounter];
         kingdomCounter++;
         gold = 100;
-        food = 0;
+        food = 50;
         structures = new ArrayList<>();
         units = new ArrayList<>();
         setPositions();

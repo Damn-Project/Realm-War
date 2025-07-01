@@ -1,6 +1,7 @@
 package mjp.views;
 
 import mjp.controllers.GameController;
+import mjp.models.Kingdom;
 import mjp.utils.ResourceLoader;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class MenuPanel extends JPanel {
     public GameFrame gameFrame;
     GameController gameController;
     ResourceLoader loader;
+    Color labelColor = new Color(212, 175, 55); // طلایی
 
     public MenuPanel(GameFrame gameFrame) {
         loader = new ResourceLoader();
@@ -34,11 +36,11 @@ public class MenuPanel extends JPanel {
         centerPAnel.setBackground(Color.BLUE);
 
         JPanel formPanel = new JPanel();
-        formPanel.setBackground(WHITE);
+        formPanel.setBackground(BLACK);
         formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         centerPAnel.setLayout(new BoxLayout(centerPAnel, BoxLayout.Y_AXIS));
-        centerPAnel.setBackground(WHITE);
+        centerPAnel.setBackground(GRAY);
         centerPAnel.setBorder(new EmptyBorder(40, 40, 40, 40));
         centerPAnel.setPreferredSize(new Dimension(350, 300));
 
@@ -86,6 +88,7 @@ public class MenuPanel extends JPanel {
         JLabel imageLabel = new JLabel(icon3);
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new FlowLayout());
+        imagePanel.setBackground(BLACK);
         imagePanel.add(imageLabel);
 
         add(imagePanel);
@@ -99,6 +102,14 @@ public class MenuPanel extends JPanel {
             createAndShowStartPanel();
         });
 
+        loadGameButton.addActionListener(e -> {
+            if (gameController.getGameIsRunning()) {
+                gameFrame.cardLayout.show(gameFrame.mainPanel, "GamePanel");
+                gameController.attackTimer.start();
+                gameController.endTurnTimer.start();
+            }
+        });
+
         this.revalidate();
         this.repaint();
     }
@@ -108,10 +119,12 @@ public class MenuPanel extends JPanel {
         this.setLayout(new BorderLayout());
         // First panel - Player count selection
         JPanel countPanel = new JPanel(new GridBagLayout());
+        countPanel.setBackground(BLACK);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
         JLabel titleLabel = new JLabel("Select Number of Players:");
+        titleLabel.setForeground(labelColor);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -123,6 +136,7 @@ public class MenuPanel extends JPanel {
 
         for (int i = 1; i < 4; i++) {
             countButtons[i] = new JRadioButton((i + 1) + " Player");
+            countButtons[i].setBackground(GRAY);
             group.add(countButtons[i]);
             gbc.gridy = i + 1;
             gbc.gridwidth = 1;
@@ -166,12 +180,19 @@ public class MenuPanel extends JPanel {
     private void showNameInputDialog() {
         this.removeAll();
         this.setLayout(new BorderLayout());
+        Color[] color  = new Color[4];
+        color[0] = blue;
+        color[1] = red;
+        color[2] = green;
+        color[3] = yellow;
 
         JPanel namePanel = new JPanel(new GridLayout(playerCount + 3, 1, 10, 10));
+        namePanel.setBackground(black);
         namePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel instructionLabel = new JLabel("Enter Player Names:");
-        instructionLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        instructionLabel.setForeground(labelColor);
+        instructionLabel.setFont(new Font("Arial", Font.BOLD, 20));
         namePanel.add(instructionLabel);
 
         JTextField[] nameFields = new JTextField[playerCount];
@@ -179,6 +200,9 @@ public class MenuPanel extends JPanel {
             JPanel fieldPanel = new JPanel(new BorderLayout());
             JLabel playerLabel = new JLabel("Player " + (i + 1) + ":");
             nameFields[i] = new JTextField(20);
+            nameFields[i].setForeground(color[i]);
+            nameFields[i].setFont(new Font("Arial", Font.BOLD, 14));
+            nameFields[i].setBackground(GRAY);
             fieldPanel.add(playerLabel, BorderLayout.WEST);
             fieldPanel.add(nameFields[i], BorderLayout.CENTER);
             namePanel.add(fieldPanel);
@@ -187,12 +211,16 @@ public class MenuPanel extends JPanel {
         JButton startButton = new JButton("Start Game");
         startButton.setBackground(GRAY);
         startButton.setForeground(BLACK);
+        startButton.setFont(new Font("Arial", Font.BOLD, 14));
         startButton.addActionListener(e -> {
             playerNames = new ArrayList<>();
             for (JTextField field : nameFields) {
                 String name = field.getText().trim();
                 playerNames.add(name.isEmpty() ? "Player " + (playerNames.size() + 1) : name);
             }
+            gameController.reset();
+            Kingdom.setKingdomCounter(0);
+            gameController.setPlayersUndo();
             gameController.getPlayerController().makePlayers(playerCount, playerNames);
             gameFrame.showGamePanel();
             gameController.getPlayerController().logPlayers();
@@ -201,6 +229,7 @@ public class MenuPanel extends JPanel {
         JButton backButton = new JButton("back");
         backButton.setBackground(GRAY);
         backButton.setForeground(BLACK);
+        startButton.setFont(new Font("Arial", Font.BOLD, 14));
         backButton.addActionListener(e -> {
             createAndShowStartPanel();
         });
