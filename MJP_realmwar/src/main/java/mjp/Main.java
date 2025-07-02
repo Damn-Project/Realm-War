@@ -2,11 +2,8 @@ package mjp;
 
 
 import mjp.controllers.GameController;
-import mjp.views.GameFrame;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Random;
 
 public class Main extends JFrame{
 
@@ -15,3 +12,4 @@ public class Main extends JFrame{
     }
 }
 // ...pooyan bayr...
+// ...tahala enghadr tang dide boodi ? ...
