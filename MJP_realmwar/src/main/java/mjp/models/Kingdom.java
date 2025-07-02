@@ -26,7 +26,7 @@ public class Kingdom {
     public Kingdom() {
         myColor = colors[kingdomCounter];
         kingdomCounter++;
-        gold = 100;
+        gold = 50;
         food = 50;
         structures = new ArrayList<>();
         units = new ArrayList<>();
@@ -175,6 +175,6 @@ public class Kingdom {
     }
 
     public void addIncome() {
-        gold += 10;
+        gold += 5;
     }
 }
