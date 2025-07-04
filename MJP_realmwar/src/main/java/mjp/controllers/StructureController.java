@@ -26,6 +26,7 @@ public class StructureController {
         if (structure.getClass().getSimpleName().equalsIgnoreCase("Tower"))
             gameController.getAttackingBlocks().add(block);
 //        endTurn();
+        gameController.getInfoPanel().setPlayerInfo(gameController.getOnTurn());
     }
 
     public void upGradeStructure(Block selected) {

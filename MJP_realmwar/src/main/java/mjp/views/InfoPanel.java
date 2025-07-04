@@ -172,7 +172,9 @@ public class InfoPanel extends JPanel {
         upGBC.gridx = 1;
         JLabel playerCoin = new JLabel();
         playerCoin.setForeground(color);
-        playerCoin.setText("coin " + player.getKingdom().getGold());
+        if (player.getKingdom().getGold() >= 0)
+            playerCoin.setText("coin " + player.getKingdom().getGold());
+        else playerCoin.setText("0");
         upPanel.add(playerCoin, upGBC);
 
         upPanel.revalidate();
@@ -195,12 +197,19 @@ public class InfoPanel extends JPanel {
         pauseButton.addActionListener(e -> {
             gameController.endTurnTimer.stop();
             gameController.attackTimer.stop();
-            JFrame createFrame = new JFrame("Create structure or unit");
+            JFrame createFrame = new JFrame("pause");
+            createFrame.setLayout(new GridLayout(2, 1));
             createFrame.setResizable(false);
-            createFrame.setSize(150, 150);
+            createFrame.setSize(200, 200);
             createFrame.setLocationRelativeTo(null);
-            createFrame.setLayout(new FlowLayout());
             createFrame.setBackground(Color.BLACK);
+
+            JLabel infoLabel = new JLabel();
+            infoLabel.setBackground(Color.black);
+            infoLabel.setForeground(Color.BLUE);
+            infoLabel.setText("click button to resume");
+            createFrame.add(infoLabel);
+
 
             JButton resumeButton = new JButton("resume");
             resumeButton.setForeground(Color.black);

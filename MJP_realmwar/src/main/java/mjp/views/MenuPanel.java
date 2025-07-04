@@ -40,13 +40,13 @@ public class MenuPanel extends JPanel {
         formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         centerPAnel.setLayout(new BoxLayout(centerPAnel, BoxLayout.Y_AXIS));
-        centerPAnel.setBackground(GRAY);
+        centerPAnel.setBackground(black);
         centerPAnel.setBorder(new EmptyBorder(40, 40, 40, 40));
         centerPAnel.setPreferredSize(new Dimension(350, 300));
 
 
         newGameButton = new JButton("New Game");
-        newGameButton.setBackground(BLACK);
+        newGameButton.setBackground(gray);
         newGameButton.setForeground(Color.CYAN);
         newGameButton.setFont(new Font("Arial", Font.BOLD, 14));
         newGameButton.setFocusPainted(false);
@@ -56,7 +56,7 @@ public class MenuPanel extends JPanel {
         newGameButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         loadGameButton = new JButton("Load Game");
-        loadGameButton.setBackground(BLACK);
+        loadGameButton.setBackground(gray);
         loadGameButton.setForeground(Color.CYAN);
         loadGameButton.setFont(new Font("Arial", Font.BOLD, 14));
         loadGameButton.setFocusPainted(false);
@@ -67,7 +67,7 @@ public class MenuPanel extends JPanel {
 
         exitButton = new JButton("Exit");
         exitButton.setPreferredSize(new Dimension(12, 5));
-        exitButton.setBackground(BLACK);
+        exitButton.setBackground(gray);
         exitButton.setForeground(Color.CYAN);
         exitButton.setFont(new Font("Arial", Font.BOLD, 14));
         exitButton.setFocusPainted(false);

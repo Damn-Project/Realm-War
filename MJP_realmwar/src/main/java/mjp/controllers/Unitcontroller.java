@@ -19,6 +19,7 @@ public class Unitcontroller {
         block.iconSetCheck();
         gameController.getAttackingBlocks().add(block);
 //        endTurn();
+        gameController.getInfoPanel().setPlayerInfo(gameController.getOnTurn());
     }
 
     public void upGradeUnit(Block selected) {

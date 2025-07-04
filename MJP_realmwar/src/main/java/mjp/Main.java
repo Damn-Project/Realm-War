@@ -2,13 +2,15 @@ package mjp;
 
 
 import mjp.controllers.GameController;
+//import com.google.gson.Gson;
+//import com.google.gson.JsonObject;
 
 import javax.swing.*;
 
-public class Main extends JFrame{
+public class Main{
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(GameController::new); // tabe baraye end turn benevis
+        SwingUtilities.invokeLater(GameController::new);
     }
 }
 // ...pooyan bayr...
