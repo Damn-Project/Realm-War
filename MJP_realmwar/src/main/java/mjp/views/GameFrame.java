@@ -108,4 +108,8 @@ public class GameFrame extends JFrame {
     public void showMessageYouWin(Player players) {
         JOptionPane.showMessageDialog(this, "************ " + players.getName() + " win !  ***********");
     }
+
+    public void showMessageTimeIsEnd() {
+        JOptionPane.showMessageDialog(this, "your time ended !");
+    }
 }

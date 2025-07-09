@@ -2,6 +2,9 @@ package mjp.views;
 
 import mjp.controllers.GameController;
 import mjp.models.Kingdom;
+import mjp.models.Player;
+import mjp.models.structures.Structure;
+import mjp.models.units.Unit;
 import mjp.utils.ResourceLoader;
 
 import javax.swing.*;
@@ -95,6 +98,8 @@ public class MenuPanel extends JPanel {
         add(formPanel);
 
         exitButton.addActionListener(e -> {
+//            Timer t = new Timer(1000, ev -> {
+//            });
             System.exit(0);
         });
 
@@ -107,6 +112,7 @@ public class MenuPanel extends JPanel {
                 gameFrame.cardLayout.show(gameFrame.mainPanel, "GamePanel");
                 gameController.attackTimer.start();
                 gameController.endTurnTimer.start();
+                gameController.getFrame().blockPanel.removeBorder();
             }
         });
 
@@ -180,7 +186,7 @@ public class MenuPanel extends JPanel {
     private void showNameInputDialog() {
         this.removeAll();
         this.setLayout(new BorderLayout());
-        Color[] color  = new Color[4];
+        Color[] color = new Color[4];
         color[0] = blue;
         color[1] = red;
         color[2] = green;
@@ -213,6 +219,15 @@ public class MenuPanel extends JPanel {
         startButton.setForeground(BLACK);
         startButton.setFont(new Font("Arial", Font.BOLD, 14));
         startButton.addActionListener(e -> {
+            gameController.getGameLogger().removeArrays();
+            Player.removeArray();
+            Player.resetID();
+            Kingdom.removeArray();
+            Kingdom.resetID();
+            Unit.removeArray();
+            Unit.resetID();
+            Structure.removeArray();
+            Structure.resetID();
             playerNames = new ArrayList<>();
             for (JTextField field : nameFields) {
                 String name = field.getText().trim();

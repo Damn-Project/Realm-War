@@ -45,6 +45,7 @@ public class Unitcontroller {
             }
             for (int i = 0; i < died.size(); i++) {
                 p.getKingdom().removeUnit(died.get(i));
+                Unit.unitRemoveStatic(died.get(i));
             }
         }
     }

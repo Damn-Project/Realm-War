@@ -17,6 +17,7 @@ public class Tower extends Structure {
             damage += 2;
         }
         kingdom.decreaseGold(getCreateCost());
+        classType = "Tower";
     }
 
     @Override

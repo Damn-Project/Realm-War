@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Block extends JButton {
+    int ID;
     public ImageIcon icon = null;
     Color color;
     static String imagePath;
@@ -23,12 +24,14 @@ public abstract class Block extends JButton {
     ResourceLoader imageLoader;
     ArrayList<Block> neighbors;
     ArrayList<Block> enemies;
+    static int blockID = 1;
 
     public ArrayList<Block> getEnemies() {
         return enemies;
     }
 
     public Block(Position position) {
+        this.ID = blockID++;
         imageLoader = new ResourceLoader();
         this.position = position;
         imagePath = "/home/sopoyan/Desktop/Realm-War/resources";
@@ -36,6 +39,10 @@ public abstract class Block extends JButton {
         hasUnit = false;
         neighbors = new ArrayList<>();
         enemies = new ArrayList<>();
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public void setEnemies() {

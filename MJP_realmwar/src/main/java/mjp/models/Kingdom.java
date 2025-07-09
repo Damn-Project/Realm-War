@@ -4,20 +4,28 @@ import mjp.models.blocks.Block;
 import mjp.models.structures.Structure;
 import mjp.models.structures.TownHall;
 import mjp.models.units.Unit;
+import mjp.views.BlockPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Kingdom {
-    private Player player;
+    int ID;
+    transient private Player player;
+    public int playerID;
     static Color[] colors = {Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW};
-    Color myColor;
+    transient Color myColor;
     int gold;
     int food;
-    private Position[] positions;
-    private ArrayList<Structure> structures;
-    private ArrayList<Unit> units;
+    transient private Position[] positions;
+    transient private final ArrayList<Structure> structures;
+    transient private final ArrayList<Unit> units;
     static int kingdomCounter = 0;
+    static int kingdomID = 1;
+    static ArrayList<Kingdom> kingdoms = new ArrayList<>();
+    public ArrayList<Integer> blockID;
+    public ArrayList<Integer> unitsID;
+    public ArrayList<Integer> structuresID;
 
     public static void setKingdomCounter(int kingdomCounter) {
         Kingdom.kingdomCounter = kingdomCounter;
@@ -31,6 +39,16 @@ public class Kingdom {
         structures = new ArrayList<>();
         units = new ArrayList<>();
         setPositions();
+        this.ID = kingdomID++;
+        kingdoms.add(this);
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public static void kingdomRemoveStatic(Kingdom kingdom) {
+        kingdoms.remove(kingdom);
     }
 
     public void setPlayer(Player player) {
@@ -40,6 +58,14 @@ public class Kingdom {
     public void setTownHall(TownHall townHall1, TownHall townHall2) {
         structures.add(townHall1);
         structures.add(townHall2);
+    }
+
+    public static ArrayList<Kingdom> getKingdoms() {
+        return kingdoms;
+    }
+
+    public static void resetID() {
+        kingdomID = 1;
     }
 
     public Color getMyColor() {
@@ -176,5 +202,36 @@ public class Kingdom {
 
     public void addIncome() {
         gold += 5;
+    }
+
+    public void readyToJson() {
+        blockID = new ArrayList<>();
+        unitsID = new ArrayList<>();
+        structuresID = new ArrayList<>();
+
+        playerID = player.getID();
+
+        for (Unit u : units) {
+            unitsID.add(u.getID());
+        }
+
+        for (Structure s : structures) {
+            structuresID.add(s.getID());
+        }
+
+        Block[][] blockPanelBlocks = BlockPanel.staticGetBlocks();
+        for (Position p : positions) {
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (p.getY() == j && p.getX() == i) {
+                        blockID.add(blockPanelBlocks[i][j].getID());
+                    }
+                }
+            }
+        }
+    }
+
+    public static void removeArray() {
+        kingdoms = new ArrayList<>();
     }
 }

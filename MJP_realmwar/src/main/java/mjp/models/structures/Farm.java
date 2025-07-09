@@ -14,6 +14,7 @@ public class Farm extends Structure {
         health = 5;
         makeFood = 5;
         kingdom.decreaseGold(getCreateCost());
+        classType = "Farm";
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Spearman extends Unit {
         damage = 2;
         health = 5;
         kingdom.decreaseGold(getCreateCost());
+        classType = "Spearman";
     }
 
 }

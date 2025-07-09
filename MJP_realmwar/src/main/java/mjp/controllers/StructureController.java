@@ -1,5 +1,6 @@
 package mjp.controllers;
 
+import mjp.models.Kingdom;
 import mjp.models.Player;
 import mjp.models.blocks.Block;
 import mjp.models.structures.Structure;
@@ -55,6 +56,7 @@ public class StructureController {
             }
             for (int i = 0; i < died.size(); i++) {
                 p.getKingdom().removeStructure(died.get(i));
+                Structure.structureRemoveStatic(died.get(i));
                 if (died.get(i).getClass().getSimpleName().equalsIgnoreCase("townHall")) {
                     if (!p.getKingdom().checkHasTownHall()) {
                         diedP = p;
@@ -65,6 +67,8 @@ public class StructureController {
         }
         if (diedP != null) {
             gameController.getPlayers().remove(diedP);
+            Player.playerRemoveStatic(diedP);
+            Kingdom.kingdomRemoveStatic(diedP.getKingdom());
             gameController.turn.remove(diedP);
             gameController.isEnd();
         }

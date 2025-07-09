@@ -11,6 +11,7 @@ public class Barrack extends Structure {
         createCost = 10;
         health = 10;
         kingdom.decreaseGold(getCreateCost());
+        classType = "Barrack";
     }
 
 }

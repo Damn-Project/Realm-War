@@ -41,6 +41,9 @@ public class BlockPanel extends JPanel {
         this.infoPanel = infoPanel;
     }
 
+    public static Block[][] staticGetBlocks() {
+        return Blocks;
+    }
     public Block[][] getBlocks() {
         return Blocks;
     }

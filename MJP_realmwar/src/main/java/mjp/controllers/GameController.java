@@ -9,6 +9,7 @@ import mjp.models.units.Knight;
 import mjp.models.units.Spearman;
 import mjp.models.units.Swordman;
 import mjp.models.units.Unit;
+import mjp.utils.GameLogger;
 import mjp.views.*;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ import java.util.Queue;
 import java.util.Random;
 
 public class GameController {
+    GameLogger gameLogger;
     PlayerController playerController;
     Unitcontroller unitcontroller;
     StructureController structureController;
@@ -97,6 +99,7 @@ public class GameController {
 
     public GameController() {
         frame = new GameFrame();
+        gameLogger = new GameLogger(this);
         playerController = new PlayerController(this);
         unitcontroller = new Unitcontroller(this);
         structureController = new StructureController(this);
@@ -141,6 +144,10 @@ public class GameController {
 
     public InfoPanel getInfoPanel() {
         return infoPanel;
+    }
+
+    public GameLogger getGameLogger() {
+        return gameLogger;
     }
 
     public void isEnd() {

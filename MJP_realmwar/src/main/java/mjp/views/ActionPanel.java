@@ -120,6 +120,10 @@ public class ActionPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton attackButton = new JButton("ok");
         attackButton.addActionListener(e -> {
+            if (!gameController.getOnTurn().getKingdom().checkInPosition(gameController.getSelected1())) {
+                gameFrame.showMessageTimeIsEnd();
+                return;
+            }
             if (structure.isSelected()) {
                 makeStructureFrame();
             } else {
@@ -179,6 +183,10 @@ public class ActionPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton attackButton = new JButton("ok");
         attackButton.addActionListener(e -> {
+            if (!gameController.getOnTurn().getKingdom().checkInPosition(gameController.getSelected1())) {
+                gameFrame.showMessageTimeIsEnd();
+                return;
+            }
             if (barrack.isSelected()) {
                 if (gameController.getOnTurn().getKingdom().getGold() < Barrack.createCost) {
                     gameFrame.showLackOfCoinMassage();
@@ -248,6 +256,10 @@ public class ActionPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton attackButton = new JButton("ok");
         attackButton.addActionListener(e -> {
+            if (!gameController.getOnTurn().getKingdom().checkInPosition(gameController.getSelected1())) {
+                gameFrame.showMessageTimeIsEnd();
+                return;
+            }
             if (spearMan.isSelected()) {
                 if (gameController.getOnTurn().getKingdom().getGold() < Spearman.createCost) {
                     gameFrame.showLackOfCoinMassage();

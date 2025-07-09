@@ -8,34 +8,48 @@ import mjp.models.structures.Structure;
 import mjp.utils.ResourceLoader;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public abstract class Unit {
-    Position position;
-    Kingdom kingdom;
-    Structure structure;
-    Block block;
+    int ID;
+    transient Position position;
+    transient Kingdom kingdom;
+    public int kingdomID;
+    transient Structure structure;
+    public int structureID;
+    transient Block block;
+    public int blockID;
     int level;
     int levelUpGradeCost;
     int foodCost;
     public static int createCost;
     int damage;
     int health;
-    ImageIcon icon;
-    ResourceLoader loader;
+    transient ImageIcon icon; // after json
+    transient ResourceLoader loader; // after json
     static int maxLevel = 3;
     boolean inForest;
+    static int unitID = 1;
+    static ArrayList<Unit> units = new ArrayList<>();
+    public String classType;
 
     public Unit(Block block, Kingdom kingdom) {
+        this.ID = unitID++;
         this.kingdom = kingdom;
         this.block = block;
         if (block.getClass().getSimpleName().equalsIgnoreCase("ForestBlock")) {
             inForest = true;
+            upgradeDamage();
         }
         this.position = block.getPosition();
         this.level = 1;
         loader = new ResourceLoader();
         levelUpGradeCost = 1;
+        units.add(this);
+    }
 
+    public static void resetID() {
+        unitID = 1;
     }
 
     public Kingdom getKingdom() {
@@ -68,6 +82,10 @@ public abstract class Unit {
             inForest = false;
             decreaseDamage();
         }
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public void upgradeDamage() {
@@ -107,6 +125,10 @@ public abstract class Unit {
         }
     }
 
+    public static ArrayList<Unit> getUnits() {
+        return units;
+    }
+
     public int getLevelUpGradeCost() {
         return levelUpGradeCost;
     }
@@ -117,5 +139,20 @@ public abstract class Unit {
 
     public void decreaseHealth(int damage) {
         this.health -= damage;
+    }
+
+    public static void unitRemoveStatic(Unit unit) {
+        units.remove(unit);
+    }
+
+    public void readyToJson() {
+        kingdomID = this.kingdom.getID();
+        if (structure != null)
+            structureID = structure.getID();
+        blockID =block.getID();
+    }
+
+    public static void removeArray() {
+        units = new ArrayList<>();
     }
 }

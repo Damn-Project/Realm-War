@@ -15,6 +15,7 @@ public class Knight extends Unit {
         damage = 5;
         health = 7;
         kingdom.decreaseGold(getCreateCost());
+        classType = "Knight";
     }
 
 }

@@ -186,6 +186,7 @@ public class InfoPanel extends JPanel {
         exitButton.setForeground(Color.gray);
         exitButton.setBackground(Color.BLACK);
         exitButton.addActionListener(e -> {
+            gameController.getGameLogger().saveMatch();
             gameController.endTurnTimer.stop();
             gameController.attackTimer.stop();
             menuPanel.initialize();
