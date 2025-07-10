@@ -1,16 +1,14 @@
 package mjp.utils;
 
 import com.google.gson.Gson;
+import com.sun.source.tree.TryTree;
 import mjp.controllers.GameController;
 import mjp.models.Kingdom;
 import mjp.models.Player;
 import mjp.models.structures.Structure;
 import mjp.models.units.Unit;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 //       DEMO       DEMO       DEMO       DEMO       DEMO       DEMO       DEMO
@@ -26,7 +24,7 @@ public class GameLogger {
     Gson gson;
 
     {
-        createTable();
+        createTables();
     }
 
     public GameLogger(GameController gameController) {
@@ -41,6 +39,7 @@ public class GameLogger {
     public void saveMatch() {
         readyObjectsToQuery();
         setArrays();
+        deleteTables();
         query();
 
         //    ******************   after connecting to data base   ***********************
@@ -80,12 +79,96 @@ public class GameLogger {
 
         for (Unit u : Unit.getUnits()) {
             this.units.add(gson.toJson(u));
-            System.out.println(gson.toJson(u));
+        }
+    }
+
+    public void deleteTables() {
+        String[] tables = {"player", "kingdom", "structure", "unit"};
+        String sql = "DELETE FROM ?";
+
+        try {
+            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            for (String s : tables) {
+                preparedStatement.setString(1, s);
+                preparedStatement.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println("delete from data base failed");
         }
     }
 
     public void query() {
-        System.out.println("(exit button action listener)gameLogger>>save>>query>>complete sql code");
+//        System.out.println("(exit button action listener)gameLogger>>save>>query>>complete sql code");
+        insertPlayers();
+        insertKingdoms();
+        insertStructures();
+        insertUnits();
+    }
+
+    public void insertPlayers() {
+        String sql = "INSERT INTO player (json) VALUES (?)";
+
+        try {
+            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            for (String s : players) {
+                preparedStatement.setString(1, s);
+                preparedStatement.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println("connecting to player table failed");
+        }
+    }
+
+    public void insertKingdoms() {
+        String sql = "INSERT INTO kingdom (json) VALUES (?)";
+
+        try {
+            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            for (String k : kingdoms) {
+                preparedStatement.setString(1, k);
+                preparedStatement.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println("connecting to kingdom table failed");
+        }
+    }
+
+    public void insertStructures() {
+        String sql = "INSERT INTO structure (json) VALUES (?)";
+
+        try {
+            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            for (String s : structures) {
+                preparedStatement.setString(1, s);
+                preparedStatement.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println("connecting to structure table failed");
+        }
+    }
+
+    public void insertUnits() {
+        String sql = "INSERT INTO unit (json) VALUES (?)";
+
+        try {
+            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            for (String u : units) {
+                preparedStatement.setString(1, u);
+                preparedStatement.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println("connecting to unit table failed");
+        }
     }
 
     public void removeArrays() {
@@ -95,18 +178,23 @@ public class GameLogger {
         structures = new ArrayList<>();
     }
 
-    public void createTable() {  // SHOULD CHANGE
-        String sql = "CREATE TABLE IF NOT EXISTS student (" +
-                "id SERIAL UNIQUE, " +
-                "name TEXT NUT NULL, " +
-                "birthday TEXT, " +
-                "score DECIMAL(3, 1), " +
-                "city VARCHAR(20))";
+    public void createTables() {  // SHOULD CHANGE
+        String player = "CREATE TABLE IF NOT EXISTS player (" +
+                "json text)";
+        String kingdom = "CREATE TABLE IF NOT EXISTS kingdom (" +
+                "json text)";
+        String structure = "CREATE TABLE IF NOT EXISTS structure (" +
+                "json text)";
+        String unit = "CREATE TABLE IF NOT EXISTS unit (" +
+                "json text)";
 
         try {
             Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
             Statement statement = connection.createStatement();
-            statement.execute(sql);
+            statement.execute(player);
+            statement.execute(kingdom);
+            statement.execute(structure);
+            statement.execute(unit);
             System.out.println("Connection successfully cached");
         } catch (SQLException e) {
             System.err.println("gameLogger>>staticBlock>>createTable>>SQl-" +
