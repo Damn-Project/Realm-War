@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class GameLogger {
     private static final String URL = "jdbc:postgresql://localhost:5432/realm_war"; // must check
     private static final String OWNER = "postgres";
-    private static final String PASSWORD = "1234";
+    private static final String PASSWORD = "1010";
     GameController gameController;
     ArrayList<String> players;
     ArrayList<String> kingdoms;
@@ -110,64 +110,68 @@ public class GameLogger {
     public void insertPlayers() {
         String sql = "INSERT INTO player (json) VALUES (?)";
 
-        try {
-            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (String s : players) {
 
-            for (String s : players) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
                 preparedStatement.setString(1, s);
                 preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                System.out.println("connecting to player table failed");
             }
-        } catch (SQLException e) {
-            System.out.println("connecting to player table failed");
         }
     }
 
     public void insertKingdoms() {
         String sql = "INSERT INTO kingdom (json) VALUES (?)";
 
-        try {
-            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (String k : kingdoms) {
 
-            for (String k : kingdoms) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
                 preparedStatement.setString(1, k);
                 preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                System.out.println("connecting to player table failed");
             }
-        } catch (SQLException e) {
-            System.out.println("connecting to kingdom table failed");
         }
     }
 
     public void insertStructures() {
         String sql = "INSERT INTO structure (json) VALUES (?)";
 
-        try {
-            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (String s : structures) {
 
-            for (String s : structures) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
                 preparedStatement.setString(1, s);
                 preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                System.out.println("connecting to player table failed");
             }
-        } catch (SQLException e) {
-            System.out.println("connecting to structure table failed");
         }
     }
 
     public void insertUnits() {
         String sql = "INSERT INTO unit (json) VALUES (?)";
 
-        try {
-            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (String u : units) {
 
-            for (String u : units) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
                 preparedStatement.setString(1, u);
                 preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                System.out.println("connecting to player table failed");
             }
-        } catch (SQLException e) {
-            System.out.println("connecting to unit table failed");
         }
     }
 
