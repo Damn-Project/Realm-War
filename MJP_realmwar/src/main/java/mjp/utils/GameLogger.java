@@ -84,23 +84,21 @@ public class GameLogger {
 
     public void deleteTables() {
         String[] tables = {"player", "kingdom", "structure", "unit"};
-        String sql = "DELETE * FROM ?";
 
-        for (String s : tables) {
+        for (String table : tables) {
+            String sql = "DELETE FROM " + table;
 
-            try {
-                Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-                preparedStatement.setString(1, s);
-                preparedStatement.executeQuery();
+            try (
+                    Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+                    Statement statement = connection.createStatement()
+            ) {
+                statement.executeUpdate(sql);
             } catch (SQLException e) {
-                System.out.println("delete from data base failed");
+                System.out.println("Failed to delete from table: " + table);
             }
         }
-
-
     }
+
 
     public void query() {
 //        System.out.println("(exit button action listener)gameLogger>>save>>query>>complete sql code");
