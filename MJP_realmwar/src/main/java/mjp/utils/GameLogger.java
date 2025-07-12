@@ -84,19 +84,22 @@ public class GameLogger {
 
     public void deleteTables() {
         String[] tables = {"player", "kingdom", "structure", "unit"};
-        String sql = "DELETE FROM ?";
+        String sql = "DELETE * FROM ?";
 
-        try {
-            Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (String s : tables) {
 
-            for (String s : tables) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
                 preparedStatement.setString(1, s);
                 preparedStatement.executeQuery();
+            } catch (SQLException e) {
+                System.out.println("delete from data base failed");
             }
-        } catch (SQLException e) {
-            System.out.println("delete from data base failed");
         }
+
+
     }
 
     public void query() {
@@ -136,7 +139,7 @@ public class GameLogger {
                 preparedStatement.setString(1, k);
                 preparedStatement.executeQuery();
             } catch (SQLException e) {
-                System.out.println("connecting to player table failed");
+                System.out.println("connecting to kingdom table failed");
             }
         }
     }
@@ -153,7 +156,7 @@ public class GameLogger {
                 preparedStatement.setString(1, s);
                 preparedStatement.executeQuery();
             } catch (SQLException e) {
-                System.out.println("connecting to player table failed");
+                System.out.println("connecting to structure table failed");
             }
         }
     }
@@ -170,7 +173,7 @@ public class GameLogger {
                 preparedStatement.setString(1, u);
                 preparedStatement.executeQuery();
             } catch (SQLException e) {
-                System.out.println("connecting to player table failed");
+                System.out.println("connecting to unit table failed");
             }
         }
     }
