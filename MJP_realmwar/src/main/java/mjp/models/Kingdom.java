@@ -38,9 +38,33 @@ public class Kingdom {
         food = 50;
         structures = new ArrayList<>();
         units = new ArrayList<>();
-        setPositions();
         this.ID = kingdomID++;
+        setPositions();
         kingdoms.add(this);
+    }
+
+    public void setMyColor(Color myColor) {
+        this.myColor = myColor;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public static int getKingdomID() {
+        return kingdomID;
+    }
+
+    public ArrayList<Integer> getBlockID() {
+        return blockID;
+    }
+
+    public ArrayList<Integer> getUnitsID() {
+        return unitsID;
+    }
+
+    public ArrayList<Integer> getStructuresID() {
+        return structuresID;
     }
 
     public int getID() {
@@ -135,7 +159,7 @@ public class Kingdom {
     }
 
     public void setPositions() {
-        switch (kingdomCounter) {
+        switch (this.ID) {
             case 1: {
                 positions = new Position[]{
                         new Position(0, 1), new Position(0, 2), new Position(0, 3), new Position(0, 4), new Position(0, 5), new Position(0, 6), new Position(0, 7), new Position(0, 8),

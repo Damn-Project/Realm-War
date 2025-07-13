@@ -152,7 +152,38 @@ public abstract class Unit {
         blockID =block.getID();
     }
 
+    public void makeLoader() {
+        loader = new ResourceLoader();
+        switch (this.getClass().getSimpleName()) {
+            case "Spearman": {
+                icon = loader.imageIcons[6];
+            }
+            case "Swordman": {
+                icon = loader.imageIcons[7];
+            }
+            case "Knight": {
+                icon = loader.imageIcons[4];
+            }
+        }
+    }
+
     public static void removeArray() {
         units = new ArrayList<>();
+    }
+
+    public void setKingdom(Kingdom kingdom) {
+        this.kingdom = kingdom;
+    }
+
+    public int getBlockID() {
+        return blockID;
+    }
+
+    public int getKingdomID() {
+        return kingdomID;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

@@ -38,6 +38,26 @@ public abstract class Structure {
         return level;
     }
 
+    public int getBlockID() {
+        return blockID;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+    }
+
+    public int getKingdomID() {
+        return kingdomID;
+    }
+
+    public void setKingdom(Kingdom kingdom) {
+        this.kingdom = kingdom;
+    }
+
     public Structure(Block block, Kingdom kingdom) {
         this.ID = structureID++;
         this.kingdom = kingdom;
@@ -86,6 +106,24 @@ public abstract class Structure {
             this.level++;
             health += 2;
             kingdom.decreaseGold(levelUpGradeCost);
+        }
+    }
+
+    public void makeLoader() {
+        loader = new ResourceLoader();
+        switch (this.getClass().getSimpleName()) {
+            case "Form": {
+                icon = loader.imageIcons[2];
+            }
+            case "Barrack": {
+                icon = loader.imageIcons[1];
+            }
+            case "Tower": {
+                icon = loader.imageIcons[8];
+            }
+            case "TownHall": {
+                icon = loader.imageIcons[9];
+            }
         }
     }
 

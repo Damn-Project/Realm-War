@@ -113,6 +113,8 @@ public class MenuPanel extends JPanel {
                 gameController.attackTimer.start();
                 gameController.endTurnTimer.start();
                 gameController.getFrame().blockPanel.removeBorder();
+            }else {
+                gameController.getGameLogger().readFromDateBase();
             }
         });
 

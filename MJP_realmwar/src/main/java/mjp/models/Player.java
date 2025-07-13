@@ -23,6 +23,22 @@ public class Player {
         players.add(this);
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public int getKingdomID() {
+        return kingdomID;
+    }
+
+    public static int getPlayerID() {
+        return playerID;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public static void resetID() {
         playerID = 1;
     }
