@@ -378,6 +378,9 @@ public class GameController {
                     p.setColor(Color.YELLOW);
                 }
             }
+            turn.add(p);
+            endTurn();
+            infoPanel.setPlayerInfo(onTurn);
         }
     }
 
@@ -416,6 +419,7 @@ public class GameController {
                 for (int j = 0; j < 10; j++) {
                     if (s.getBlockID() == blocks[i][j].getID()) {
                         s.setBlock(blocks[i][j]);
+                        blocks[i][j].setStructure(s);
                         s.setPosition(blocks[i][j].getPosition());
                         break;
                     }
@@ -444,6 +448,7 @@ public class GameController {
                 for (int j = 0; j < 10; j++) {
                     if (u.getBlockID() == blocks[i][j].getID()) {
                         u.setBlock(blocks[i][j]);
+                        blocks[i][j].setUnit(u);
                         u.setPosition(blocks[i][j].getPosition());
                         break;
                     }
