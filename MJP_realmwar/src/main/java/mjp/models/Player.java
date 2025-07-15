@@ -6,6 +6,22 @@ import com.google.gson.annotations.Expose;
 import java.awt.*;
 import java.util.ArrayList;
 
+public class Player {
+    int ID;
+    private final String name;
+    transient Kingdom kingdom;
+    public int kingdomID;
+    transient Color color;
+    static int playerID = 1;
+    static ArrayList<Player> players = new ArrayList<>();
+
+    public Player(String name, Kingdom kingdom ) {
+        this.name = name;
+        this.kingdom = kingdom;
+        this.color = kingdom.myColor;
+        this.ID = playerID++;
+        players.add(this);
+    }
     public Color getColor() {
         return color;
     }
