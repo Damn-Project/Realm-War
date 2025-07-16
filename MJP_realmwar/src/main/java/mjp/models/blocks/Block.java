@@ -86,7 +86,7 @@ public abstract class Block extends JButton {
     }
 
     public void setUnit(Unit unit) {
-        if (!hasUnit) {
+        if (!hasUnit()) {
             hasUnit = true;
             this.unit = unit;
             setKingdom(unit.getKingdom());
@@ -100,7 +100,7 @@ public abstract class Block extends JButton {
     }
 
     public void setStructure(Structure structure) {
-        if (!hasStructure) {
+        if (!hasStructure()) {
             hasStructure = true;
             this.structure = structure;
             setKingdom(structure.getKingdom());
@@ -140,7 +140,7 @@ public abstract class Block extends JButton {
         this.unit = null;
         hasUnit = false;
         iconSetCheck();
-        if (!hasStructure)
+        if (!hasStructure())
             setKingdom(null);
     }
 
