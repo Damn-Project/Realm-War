@@ -144,13 +144,6 @@ public abstract class Block extends JButton {
             setKingdom(null);
     }
 
-    public void structureDied() {
-        this.structure = null;
-        hasStructure = false;
-        iconSetCheck();
-        if (!hasUnit)
-            setKingdom(null);
-    }
 
     public Block getFreeBlockInNeighbors() {
         for (Block b : neighbors) {
