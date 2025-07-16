@@ -22,7 +22,6 @@ public class Player {
         this.ID = playerID++;
         players.add(this);
     }
-
     public Color getColor() {
         return color;
     }
