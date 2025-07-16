@@ -11,9 +11,9 @@ public class Swordman extends Unit {
         super(block, kingdom);
         icon = loader.imageIcons[7];
         foodCost = 5;
-        createCost = 6;
+        createCost = 5;
         damage = 3;
-        health = 6;
+        health = 5;
         kingdom.decreaseGold(getCreateCost());
         classType = "Swordman";
     }
