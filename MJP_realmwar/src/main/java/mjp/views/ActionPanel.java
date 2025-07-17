@@ -224,7 +224,7 @@ public class ActionPanel extends JPanel {
     }
 
     public void makeUnitFrame() {
-        JFrame createFrame = new JFrame("CREATE UNIT");
+        JFrame createFrame = new JFrame("Create unit");
         createFrame.setResizable(false);
         createFrame.setSize(200, 300);
         createFrame.setLocationRelativeTo(null);
