@@ -137,6 +137,13 @@ public abstract class Block extends JButton {
     }
 
 
+    public void unitDied() {
+        this.unit = null;
+        hasUnit = false;
+        iconSetCheck();
+        if (!hasStructure())
+            setKingdom(null);
+    }
 
 
     public void structureDied() {
