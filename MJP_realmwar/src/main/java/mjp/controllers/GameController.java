@@ -1,5 +1,6 @@
 package mjp.controllers;
 
+import mjp.models.Kingdom;
 import mjp.models.Player;
 import mjp.models.blocks.Block;
 import mjp.models.structures.Farm;
@@ -13,6 +14,7 @@ import mjp.utils.GameLogger;
 import mjp.views.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -344,5 +346,124 @@ public class GameController {
         endTurnTimer.start();
         if (!gameIsRunning)
             gameIsRunning = true;
+    }
+
+    public void fillAttributes() {
+        fillForPlayers();
+        fillForKingdoms();
+        fillForStructures();
+        fillForUnits();
+    }
+
+    public void fillForPlayers() {
+        for (Player p : Player.getPlayers()) {
+            for (Kingdom k : Kingdom.getKingdoms()) {
+                if (p.getKingdomID() == k.getID()) {
+                    p.setKingdom(k);
+                    break;
+                }
+            }
+
+            switch (p.getID()) {
+                case 1: {
+                    p.setColor(Color.BLUE);
+                }
+                case 2: {
+                    p.setColor(Color.RED);
+                }
+                case 3: {
+                    p.setColor(Color.GREEN);
+                }
+                case 4: {
+                    p.setColor(Color.YELLOW);
+                }
+            }
+            turn.add(p);
+            endTurn();
+            infoPanel.setPlayerInfo(onTurn);
+        }
+    }
+
+    public void fillForKingdoms() {
+        for (Kingdom k : Kingdom.getKingdoms()) {
+
+            for (Player p : Player.getPlayers()) {
+                if (k.getPlayerID() == p.getID()) {
+                    k.setPlayer(p);
+                    k.setMyColor(p.getColor());
+                    break;
+                }
+            }
+
+            for (Structure s : Structure.getStructures()) {
+                if (k.getStructuresID().contains(s.getID())) {
+                    k.setStructure(s);
+                }
+            }
+
+            for (Unit u : Unit.getUnits()) {
+                if (k.getUnitsID().contains(u.getID())) {
+                    k.setUnit(u);
+                }
+            }
+
+            k.setPositions();
+        }
+    }
+
+    public void fillForStructures() {
+        for (Structure s : Structure.getStructures()) {
+
+            Block[][] blocks = BlockPanel.staticGetBlocks();
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (s.getBlockID() == blocks[i][j].getID()) {
+                        s.setBlock(blocks[i][j]);
+                        blocks[i][j].setStructure(s);
+                        s.setPosition(blocks[i][j].getPosition());
+                        break;
+                    }
+                }
+            }
+
+            for (Kingdom k : Kingdom.getKingdoms()) {
+                if (s.getKingdomID() == k.getID()) {
+                    s.setKingdom(k);
+                    break;
+                }
+            }
+
+            s.makeLoader();
+
+            if (s.getClass().getSimpleName().equalsIgnoreCase("Tower"))
+                setAttackingBlock(s.getBlock());
+        }
+    }
+
+    public void fillForUnits() {
+        for (Unit u : Unit.getUnits()) {
+
+            Block[][] blocks = BlockPanel.staticGetBlocks();
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (u.getBlockID() == blocks[i][j].getID()) {
+                        u.setBlock(blocks[i][j]);
+                        blocks[i][j].setUnit(u);
+                        u.setPosition(blocks[i][j].getPosition());
+                        break;
+                    }
+                }
+            }
+
+            for (Kingdom k : Kingdom.getKingdoms()) {
+                if (u.getKingdomID() == k.getID()) {
+                    u.setKingdom(k);
+                    break;
+                }
+            }
+
+            u.makeLoader();
+            setAttackingBlock(u.getBlock());
+        }
     }
 }
