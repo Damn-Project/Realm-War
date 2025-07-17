@@ -237,9 +237,9 @@ public class ActionPanel extends JPanel {
 
 
         JPanel radioPanel = new JPanel(new GridLayout(3, 1));
-        JRadioButton spearMan = new JRadioButton("spearMan");
-        JRadioButton swordMan = new JRadioButton("swordMan");
-        JRadioButton knight = new JRadioButton("knight");
+        JRadioButton spearMan = new JRadioButton("SPEAR MAN");
+        JRadioButton swordMan = new JRadioButton("SWORD MAN");
+        JRadioButton knight = new JRadioButton("KNIGHT");
 
 
         ButtonGroup group = new ButtonGroup();
