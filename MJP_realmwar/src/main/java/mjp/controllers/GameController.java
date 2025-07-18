@@ -415,7 +415,6 @@ public class GameController {
     public void fillForStructures() {
         for (Structure s : Structure.getStructures()) {
 
-
             for (Kingdom k : Kingdom.getKingdoms()) {
                 if (s.getKingdomID() == k.getID()) {
                     s.setKingdom(k);
@@ -435,7 +434,6 @@ public class GameController {
                 }
             }
 
-
             s.makeLoader();
 
             if (s.getClass().getSimpleName().equalsIgnoreCase("Tower"))
@@ -445,7 +443,6 @@ public class GameController {
 
     public void fillForUnits() {
         for (Unit u : Unit.getUnits()) {
-
 
             for (Kingdom k : Kingdom.getKingdoms()) {
                 if (u.getKingdomID() == k.getID()) {
@@ -465,7 +462,6 @@ public class GameController {
                     }
                 }
             }
-
 
             u.makeLoader();
             setAttackingBlock(u.getBlock());

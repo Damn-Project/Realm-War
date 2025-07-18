@@ -114,17 +114,22 @@ public  class Structure {
         switch (this.getClass().getSimpleName()) {
             case "Form": {
                 icon = loader.imageIcons[2];
-                System.out.println("Loading Form");
+                System.out.println("farm icon loaded");
+                break;
             }
             case "Barrack": {
                 icon = loader.imageIcons[1];
+                System.out.println("barrack icon loaded");
+                break;
             }
             case "Tower": {
                 icon = loader.imageIcons[8];
+                System.out.println("tower icon loaded");
+                break;
             }
             case "TownHall": {
                 icon = loader.imageIcons[9];
-                System.out.println("Loading Town Hall");
+                System.out.println("townHall icon loaded");
             }
         }
     }

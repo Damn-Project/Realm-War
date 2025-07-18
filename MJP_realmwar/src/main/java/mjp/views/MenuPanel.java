@@ -121,11 +121,13 @@ public class MenuPanel extends JPanel {
             }else {
                 gameController.getGameLogger().readFromDateBase();
                 gameFrame.cardLayout.show(gameFrame.mainPanel, "GamePanel");
+
                 for (int i = 0; i < 10; i++) {
                     for (int j = 0; j < 10; j++) {
                         blocks[i][j].iconSetCheck();
                     }
                 }
+
 
             }
         });

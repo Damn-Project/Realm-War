@@ -157,12 +157,17 @@ public abstract class Unit {
         switch (this.getClass().getSimpleName()) {
             case "Spearman": {
                 icon = loader.imageIcons[6];
+                System.out.println("spearman loaded");
+                break;
             }
             case "Swordman": {
                 icon = loader.imageIcons[7];
+                System.out.println("swordman loaded");
+                break;
             }
             case "Knight": {
                 icon = loader.imageIcons[4];
+                System.out.println("knight loaded");
             }
         }
     }
