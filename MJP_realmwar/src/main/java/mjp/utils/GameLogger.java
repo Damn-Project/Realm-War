@@ -78,6 +78,7 @@ public class GameLogger {
 
 
         for (Kingdom k : Kingdom.getKingdoms()) {
+            System.out.println(k.getID());
             if (!kingdoms.contains(gson.toJson(k))) {
                 this.kingdoms.add(gson.toJson(k));
             }
