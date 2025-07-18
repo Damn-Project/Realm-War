@@ -37,6 +37,8 @@ public class GameLogger {
         kingdoms = new ArrayList<>();
         structures = new ArrayList<>();
         units = new ArrayList<>();
+
+
     }
 
     public void saveMatch() {

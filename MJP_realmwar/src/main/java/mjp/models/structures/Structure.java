@@ -10,7 +10,7 @@ import mjp.utils.ResourceLoader;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public abstract class Structure {
+public  class Structure {
     int ID;
     transient Position position;
     transient Kingdom kingdom;

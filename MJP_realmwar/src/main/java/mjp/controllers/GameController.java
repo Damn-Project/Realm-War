@@ -33,7 +33,8 @@ public class GameController {
     private ArrayList<Player> players = new ArrayList<>();
     private Block selected1;
     private Block selected2;
-    Queue<Player> turn;
+    Queue<Player> turn = new LinkedList<>();
+
     Player onTurn;
     private boolean moveButtonSelected;
     private ArrayList<Block> attackingBlocks;
