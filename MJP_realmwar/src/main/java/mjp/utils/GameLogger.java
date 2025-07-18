@@ -320,7 +320,6 @@ public class GameLogger {
         } catch (SQLException e) {
             System.err.println("gameLogger>>staticBlock>>createTable>>SQl-" +
                     "exception>>connection to data base failed");
-            e.printStackTrace();
         }
     }
 }

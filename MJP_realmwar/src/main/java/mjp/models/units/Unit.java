@@ -26,7 +26,7 @@ public abstract class Unit {
     int damage;
     int health;
     transient ImageIcon icon; // after json
-    transient ResourceLoader loader; // after json
+    transient ResourceLoader loader = new ResourceLoader(); // after json
     static int maxLevel = 3;
     boolean inForest;
     static int unitID = 1;
@@ -43,7 +43,6 @@ public abstract class Unit {
         }
         this.position = block.getPosition();
         this.level = 1;
-        loader = new ResourceLoader();
         levelUpGradeCost = 1;
         units.add(this);
     }

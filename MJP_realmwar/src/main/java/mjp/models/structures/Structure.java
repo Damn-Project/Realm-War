@@ -27,7 +27,7 @@ public  class Structure {
     static ArrayList<Structure> structures = new ArrayList<>();
     public String classType;
     transient ImageIcon icon;
-    transient ResourceLoader loader;
+    transient ResourceLoader loader = new ResourceLoader();
     static int maxLevel = 3;
 
     public int getLevelUpGradeCost() {
@@ -64,7 +64,6 @@ public  class Structure {
         this.block = block;
         this.position = block.getPosition();
         this.level = 1;
-        loader = new ResourceLoader();
         levelUpGradeCost = 2;
         structures.add(this);
     }

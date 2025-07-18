@@ -23,8 +23,8 @@ public class MenuPanel extends JPanel {
     public int playerCount;
     private ArrayList<String> playerNames;
     public GameFrame gameFrame;
-    GameController gameController = new GameController();
-    BlockPanel bp =new BlockPanel();
+    GameController gameController;
+    BlockPanel bp;
     public Block[][] blocks = bp.staticGetBlocks();
 
 
@@ -122,6 +122,7 @@ public class MenuPanel extends JPanel {
                 gameController.getGameLogger().readFromDateBase();
                 gameFrame.cardLayout.show(gameFrame.mainPanel, "GamePanel");
 
+                bp = gameController.getFrame().blockPanel;
                 for (int i = 0; i < 10; i++) {
                     for (int j = 0; j < 10; j++) {
                         blocks[i][j].iconSetCheck();

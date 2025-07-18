@@ -54,7 +54,7 @@ public class ResourceLoader {
             scaledImg = img.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             imageIcons[9] = new ImageIcon(scaledImg);
         } catch (Exception e) {
-            System.out.println("does not load");
+            throw new RuntimeException(e);
         }
     }
 }

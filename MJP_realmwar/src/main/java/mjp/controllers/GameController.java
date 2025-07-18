@@ -58,6 +58,7 @@ public class GameController {
     public Block getSelected1() {
         return selected1;
     }
+
     public Block getSelected2() {
         return selected2;
     }
@@ -433,8 +434,8 @@ public class GameController {
                     }
                 }
             }
-
-            s.makeLoader();
+            System.gc();
+//            s.makeLoader();
 
             if (s.getClass().getSimpleName().equalsIgnoreCase("Tower"))
                 setAttackingBlock(s.getBlock());
@@ -462,8 +463,8 @@ public class GameController {
                     }
                 }
             }
-
-            u.makeLoader();
+            System.gc();
+//            u.makeLoader();
             setAttackingBlock(u.getBlock());
         }
     }

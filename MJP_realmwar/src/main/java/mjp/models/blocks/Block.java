@@ -21,7 +21,7 @@ public abstract class Block extends JButton {
     Structure structure = null;
     Boolean hasUnit;
     Boolean hasStructure;
-    ResourceLoader imageLoader;
+    static ResourceLoader imageLoader = new ResourceLoader();;
     ArrayList<Block> neighbors;
     ArrayList<Block> enemies;
     static int blockID = 1;
@@ -32,7 +32,6 @@ public abstract class Block extends JButton {
 
     public Block(Position position) {
         this.ID = blockID++;
-        imageLoader = new ResourceLoader();
         this.position = position;
         imagePath = "/home/sopoyan/Desktop/Realm-War/resources";
         hasStructure = false;
