@@ -410,6 +410,20 @@ public class GameController {
             }
 
             k.setPositions();
+            switch (k.getID()) {
+                case 1: {
+                    k.setMyColor(Color.BLUE);
+                }
+                case 2: {
+                    k.setMyColor(Color.RED);
+                }
+                case 3: {
+                    k.setMyColor(Color.GREEN);
+                }
+                case 4: {
+                    k.setMyColor(Color.YELLOW);
+                }
+            }
         }
     }
 
