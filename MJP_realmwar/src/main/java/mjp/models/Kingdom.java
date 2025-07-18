@@ -32,7 +32,7 @@ public class Kingdom {
     }
 
     public Kingdom() {
-        myColor = colors[kingdomCounter];
+        myColor = colors[kingdomID - 1];
         kingdomCounter++;
         gold = 50;
         food = 50;

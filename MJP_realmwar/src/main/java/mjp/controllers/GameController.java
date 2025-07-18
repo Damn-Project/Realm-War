@@ -415,6 +415,13 @@ public class GameController {
     public void fillForStructures() {
         for (Structure s : Structure.getStructures()) {
 
+            for (Kingdom k : Kingdom.getKingdoms()) {
+                if (s.getKingdomID() == k.getID()) {
+                    s.setKingdom(k);
+                    break;
+                }
+            }
+
             Block[][] blocks = BlockPanel.staticGetBlocks();
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
@@ -424,13 +431,6 @@ public class GameController {
                         s.setPosition(blocks[i][j].getPosition());
                         break;
                     }
-                }
-            }
-
-            for (Kingdom k : Kingdom.getKingdoms()) {
-                if (s.getKingdomID() == k.getID()) {
-                    s.setKingdom(k);
-                    break;
                 }
             }
 
@@ -444,6 +444,13 @@ public class GameController {
     public void fillForUnits() {
         for (Unit u : Unit.getUnits()) {
 
+            for (Kingdom k : Kingdom.getKingdoms()) {
+                if (u.getKingdomID() == k.getID()) {
+                    u.setKingdom(k);
+                    break;
+                }
+            }
+
             Block[][] blocks = BlockPanel.staticGetBlocks();
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
@@ -453,13 +460,6 @@ public class GameController {
                         u.setPosition(blocks[i][j].getPosition());
                         break;
                     }
-                }
-            }
-
-            for (Kingdom k : Kingdom.getKingdoms()) {
-                if (u.getKingdomID() == k.getID()) {
-                    u.setKingdom(k);
-                    break;
                 }
             }
 

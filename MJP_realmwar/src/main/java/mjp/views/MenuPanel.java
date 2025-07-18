@@ -115,6 +115,8 @@ public class MenuPanel extends JPanel {
                 gameController.getFrame().blockPanel.removeBorder();
             }else {
                 gameController.getGameLogger().readFromDateBase();
+                gameFrame.cardLayout.show(gameFrame.mainPanel, "GamePanel");
+
             }
         });
 
