@@ -114,6 +114,7 @@ public  class Structure {
         switch (this.getClass().getSimpleName()) {
             case "Form": {
                 icon = loader.imageIcons[2];
+                System.out.println("Loading Form");
             }
             case "Barrack": {
                 icon = loader.imageIcons[1];
@@ -123,6 +124,7 @@ public  class Structure {
             }
             case "TownHall": {
                 icon = loader.imageIcons[9];
+                System.out.println("Loading Town Hall");
             }
         }
     }

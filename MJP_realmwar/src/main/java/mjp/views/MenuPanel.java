@@ -3,6 +3,7 @@ package mjp.views;
 import mjp.controllers.GameController;
 import mjp.models.Kingdom;
 import mjp.models.Player;
+import mjp.models.blocks.Block;
 import mjp.models.structures.Structure;
 import mjp.models.units.Unit;
 import mjp.utils.ResourceLoader;
@@ -22,7 +23,11 @@ public class MenuPanel extends JPanel {
     public int playerCount;
     private ArrayList<String> playerNames;
     public GameFrame gameFrame;
-    GameController gameController;
+    GameController gameController = new GameController();
+    BlockPanel bp =new BlockPanel();
+    public Block[][] blocks = bp.staticGetBlocks();
+
+
     ResourceLoader loader;
     Color labelColor = new Color(212, 175, 55); // طلایی
 
@@ -115,6 +120,13 @@ public class MenuPanel extends JPanel {
                 gameController.getFrame().blockPanel.removeBorder();
             }else {
                 gameController.getGameLogger().readFromDateBase();
+                gameFrame.cardLayout.show(gameFrame.mainPanel, "GamePanel");
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        blocks[i][j].iconSetCheck();
+                    }
+                }
+
             }
         });
 

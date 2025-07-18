@@ -32,7 +32,9 @@ public class Kingdom {
     }
 
     public Kingdom() {
-        myColor = colors[kingdomCounter];
+        try {
+
+        myColor = colors[0];
         kingdomCounter++;
         gold = 50;
         food = 50;
@@ -41,6 +43,10 @@ public class Kingdom {
         this.ID = kingdomID++;
         setPositions();
         kingdoms.add(this);
+    } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while creating Kingdom", e);
+        }
     }
 
     public void setMyColor(Color myColor) {
