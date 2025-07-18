@@ -76,7 +76,7 @@ public class GameLogger {
             }
         }
 
-
+        kingdoms =new ArrayList<>();
         for (Kingdom k : Kingdom.getKingdoms()) {
             System.out.println(k.getID());
             if (!kingdoms.contains(gson.toJson(k))) {
@@ -266,9 +266,9 @@ public class GameLogger {
                 Structure.getStructures().add(gson.fromJson(s, Farm.class));
             } else if (s.contains("Barrack")) {
                 Structure.getStructures().add(gson.fromJson(s, Barrack.class));
-            }else if (s.contains("TownHall")) {
+            } else if (s.contains("TownHall")) {
                 Structure.getStructures().add(gson.fromJson(s, TownHall.class));
-            }else {
+            } else {
                 Structure.getStructures().add(gson.fromJson(s, Tower.class));
             }
         }
@@ -294,7 +294,7 @@ public class GameLogger {
                 Unit.getUnits().add(gson.fromJson(s, Spearman.class));
             } else if (s.contains("Swordman")) {
                 Unit.getUnits().add(gson.fromJson(s, Swordman.class));
-            }else {
+            } else {
                 Unit.getUnits().add(gson.fromJson(s, Knight.class));
             }
         }

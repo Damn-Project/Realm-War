@@ -111,7 +111,7 @@ public  class Structure {
     public void makeLoader() {
         loader = new ResourceLoader();
         switch (this.getClass().getSimpleName()) {
-            case "Form": {
+            case "Farm": {
                 icon = loader.imageIcons[2];
                 System.out.println("farm icon loaded");
                 break;
