@@ -200,7 +200,7 @@ public class GameLogger {
     }
 
     public void readFromPlayer() {
-        String sql = "SELECT json text FROM player";
+        String sql = "SELECT json FROM player";
 
         try {
             Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
@@ -208,7 +208,7 @@ public class GameLogger {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                players.add(resultSet.getString("json text"));
+                players.add(resultSet.getString("json"));
             }
         } catch (SQLException e) {
             System.out.println("read from player failed");
@@ -220,7 +220,7 @@ public class GameLogger {
     }
 
     public void readFromKingdom() {
-        String sql = "SELECT json text FROM kingdom";
+        String sql = "SELECT json FROM kingdom";
 
         try {
             Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
@@ -228,7 +228,7 @@ public class GameLogger {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                kingdoms.add(resultSet.getString("json text"));
+                kingdoms.add(resultSet.getString("json"));
             }
         } catch (SQLException e) {
             System.out.println("read from kingdom failed");
@@ -240,7 +240,7 @@ public class GameLogger {
     }
 
     public void readFromStructure() {
-        String sql = "SELECT json text FROM structure";
+        String sql = "SELECT json  FROM structure";
 
         try {
             Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
@@ -248,10 +248,11 @@ public class GameLogger {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                structures.add(resultSet.getString("json text"));
+                structures.add(resultSet.getString("json"));
             }
         } catch (SQLException e) {
             System.out.println("read from structure failed");
+            e.printStackTrace();
         }
 
         for (String s : structures) {
@@ -260,7 +261,7 @@ public class GameLogger {
     }
 
     public void readFromUnit() {
-        String sql = "SELECT json text FROM unit";
+        String sql = "SELECT json FROM unit";
 
         try {
             Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
@@ -268,7 +269,7 @@ public class GameLogger {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                units.add(resultSet.getString("json text"));
+                units.add(resultSet.getString("json"));
             }
         } catch (SQLException e) {
             System.out.println("read from unit failed");
@@ -281,13 +282,13 @@ public class GameLogger {
 
     public void createTables() {  // SHOULD CHANGE
         String player = "CREATE TABLE IF NOT EXISTS player (" +
-                "json text)";
+                "json JSON)";
         String kingdom = "CREATE TABLE IF NOT EXISTS kingdom (" +
-                "json text)";
+                "json JSON)";
         String structure = "CREATE TABLE IF NOT EXISTS structure (" +
-                "json text)";
+                "json JSON)";
         String unit = "CREATE TABLE IF NOT EXISTS unit (" +
-                "json text)";
+                "json JSON)";
 
         try {
             Connection connection = DriverManager.getConnection(URL, OWNER, PASSWORD);
@@ -300,6 +301,7 @@ public class GameLogger {
         } catch (SQLException e) {
             System.err.println("gameLogger>>staticBlock>>createTable>>SQl-" +
                     "exception>>connection to data base failed");
+            e.printStackTrace();
         }
     }
 }
