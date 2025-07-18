@@ -32,13 +32,13 @@ public class Kingdom {
     }
 
     public Kingdom() {
-        myColor = colors[kingdomID - 1];
         kingdomCounter++;
         gold = 50;
         food = 50;
         structures = new ArrayList<>();
         units = new ArrayList<>();
         this.ID = kingdomID++;
+        myColor = colors[ID - 1];
         setPositions();
         kingdoms.add(this);
     }
