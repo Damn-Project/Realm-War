@@ -435,7 +435,7 @@ public class GameController {
                 }
             }
             System.gc();
-//            s.makeLoader();
+            s.makeLoader();
 
             if (s.getClass().getSimpleName().equalsIgnoreCase("Tower"))
                 setAttackingBlock(s.getBlock());
@@ -464,7 +464,7 @@ public class GameController {
                 }
             }
             System.gc();
-//            u.makeLoader();
+            u.makeLoader();
             setAttackingBlock(u.getBlock());
         }
     }
