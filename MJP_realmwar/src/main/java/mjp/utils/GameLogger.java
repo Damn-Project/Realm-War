@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import mjp.controllers.GameController;
 import mjp.models.Kingdom;
 import mjp.models.Player;
-import mjp.models.structures.Structure;
+import mjp.models.structures.*;
+import mjp.models.units.Knight;
+import mjp.models.units.Spearman;
+import mjp.models.units.Swordman;
 import mjp.models.units.Unit;
 
 import java.sql.*;
@@ -256,7 +259,15 @@ public class GameLogger {
         }
 
         for (String s : structures) {
-            Structure.getStructures().add(gson.fromJson(s, Structure.class));
+            if (s.contains("Farm")) {
+                Structure.getStructures().add(gson.fromJson(s, Farm.class));
+            } else if (s.contains("Barrack")) {
+                Structure.getStructures().add(gson.fromJson(s, Barrack.class));
+            }else if (s.contains("TownHall")) {
+                Structure.getStructures().add(gson.fromJson(s, TownHall.class));
+            }else {
+                Structure.getStructures().add(gson.fromJson(s, Tower.class));
+            }
         }
     }
 
@@ -276,7 +287,13 @@ public class GameLogger {
         }
 
         for (String s : units) {
-            Unit.getUnits().add(gson.fromJson(s, Unit.class));
+            if (s.contains("Spearman")) {
+                Unit.getUnits().add(gson.fromJson(s, Spearman.class));
+            } else if (s.contains("Swordman")) {
+                Unit.getUnits().add(gson.fromJson(s, Swordman.class));
+            }else {
+                Unit.getUnits().add(gson.fromJson(s, Knight.class));
+            }
         }
     }
 
